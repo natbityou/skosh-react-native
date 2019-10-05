@@ -44,6 +44,22 @@ function fetchUser() {
   })
 }
 
+function registerUser(data) {
+  return userApiClient.post('/register', data).then((response) => {
+    if (in200s(response.status)) {
+      console.log("woohoo");
+      console.log(response.data);
+
+      return response.data
+    }
+    console.log("boohoo");
+    console.log(response.data);
+
+    return null
+  })
+}
+
 export const userService = {
   fetchUser,
+  registerUser
 }
