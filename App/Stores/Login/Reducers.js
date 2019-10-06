@@ -8,14 +8,15 @@ import { INITIAL_STATE } from './InitialState'
 import { createReducer } from 'reduxsauce'
 import { LoginTypes } from './Actions'
 
-export const loginSuccess = (state) => ({
+export const loginSuccess = (state, { user }) => ({
   ...state,
-  registerSuccess: true,
+  user: user,
+  loginErrorMessage: null,
 })
 
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */
 export const reducer = createReducer(INITIAL_STATE, {
-  //[LoginTypes.LOGIN]: login,
+  [LoginTypes.LOGIN_SUCCESS]: loginSuccess,
 })

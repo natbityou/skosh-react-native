@@ -21,7 +21,14 @@ import { createActions } from 'reduxsauce'
 const { Types, Creators } = createActions({
   // Login User
   login: ['data'],
+  // User informations were successfully fetched
+  loginSuccess: ['user'],
+  // An error occurred
+  loginFailure: ['errorMessage'],
 })
+  
 
 export const LoginTypes = Types
 export default Creators
+
+

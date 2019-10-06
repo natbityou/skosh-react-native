@@ -3,6 +3,8 @@ import configureStore from './CreateStore'
 import rootSaga from 'App/Sagas'
 import { reducer as ExampleReducer } from './Example/Reducers'
 import { reducer as RegisterReducer } from './Register/Reducers'
+import { reducer as LoginReducer } from './Login/Reducers'
+
 
 export default () => {
   const rootReducer = combineReducers({
@@ -11,7 +13,8 @@ export default () => {
      * @see https://redux.js.org/api-reference/combinereducers
      */
     example: ExampleReducer,
-    register: RegisterReducer
+    register: RegisterReducer,
+    login: LoginReducer,
   })
 
   return configureStore(rootReducer, rootSaga)
