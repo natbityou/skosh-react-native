@@ -41,7 +41,7 @@ class HomeScreen extends React.Component {
       renderItem={(post) => {
       const item = post.item;
         return (
-          <View style={styles.card}>
+          <View style={styles.card} onPress={() => this.details}>
             <Image style={styles.cardImage} source={{uri:item.image}}/>
             <View style={styles.cardHeader}>
               <View>
@@ -74,6 +74,9 @@ class HomeScreen extends React.Component {
         }}/>
       </View>
     );
+  }
+   _details() {
+  NavigationService.navigate('Details')
   }
 }
 

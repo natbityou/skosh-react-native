@@ -6,9 +6,11 @@ import RegisterScreen from 'App/Containers/Register/RegisterScreen';
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen';
 import LoginScreen from 'App/Containers/Login/LoginScreen';
 import HomeScreen from '../Containers/Home/HomeScreen';
+import DetailsScreen from '../Containers/Details/DetailsScreen';
 
 
-const AppStack = createStackNavigator({ Home: HomeScreen });
+
+const AppStack = createStackNavigator({ Home: HomeScreen, Details: DetailsScreen });
 const AuthStack = createStackNavigator({ Login: LoginScreen, Register: RegisterScreen });
 
 export default createAppContainer(
