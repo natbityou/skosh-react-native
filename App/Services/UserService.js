@@ -59,7 +59,58 @@ function registerUser(data) {
   })
 }
 
+function loginUser(data) {
+  return userApiClient.post('/login', data)
+    .then((response) => {
+      if (in200s(response.status)) {
+        console.log("woohoo");
+        console.log(response.data);
+
+        return response.data
+      }
+
+      console.log("boohoo");
+      console.log(response.data);
+
+      return null
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+      }
+
+      console.log("Error logging in", error);
+    });
+}
+
+function testLogin() {
+
+  return userApiClient.get('/testing')
+    .then((response) => {
+      if (in200s(response.status)) {
+        console.log("woohoo");
+        console.log(response.data);
+
+        return response.data
+      }
+      console.log("boohoo");
+      console.log(response.data);
+
+      return null
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+      }
+
+      console.log("Failed test login", error);
+    });
+}
+
+
 export const userService = {
   fetchUser,
-  registerUser
+  registerUser,
+  loginUser,
+  testLogin
 }

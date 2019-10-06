@@ -2,9 +2,11 @@ import { takeLatest, all } from 'redux-saga/effects'
 import { ExampleTypes } from 'App/Stores/Example/Actions'
 import { StartupTypes } from 'App/Stores/Startup/Actions'
 import { RegisterTypes } from 'App/Stores/Register/Actions'
+import { LoginTypes } from 'App/Stores/Login/Actions'
 import { fetchUser } from './ExampleSaga'
 import { startup } from './StartupSaga'
 import { registerUser } from './RegisterSaga'
+import { loginUser } from './LoginSaga'
 
 
 export default function* root() {
@@ -18,5 +20,7 @@ export default function* root() {
     takeLatest(ExampleTypes.FETCH_USER, fetchUser),
     // Call 'registerUser()' when a 'Register' action is triggered
     takeLatest(RegisterTypes.REGISTER, registerUser),
+    // Call 'loginUser()' when a 'Register' action is triggered
+    takeLatest(LoginTypes.LOGIN, loginUser),    
   ])
 }
