@@ -27,7 +27,7 @@ class HomeScreen extends React.Component {
   render() {
   return (
   <View style={styles.container}> 
-      <Text style={styles.Text}>Hello {this.props.user.username}!</Text>
+      <Text style={styles.Text}>Hello {this.props.user ? this.props.user.username : 'Good Citizen'}!</Text>
       <FlatList style={styles.list}
         data={this.state.data}
         keyExtractor= {(item) => {
