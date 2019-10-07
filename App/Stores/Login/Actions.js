@@ -19,8 +19,12 @@ import { createActions } from 'reduxsauce'
  * @see https://github.com/infinitered/reduxsauce#createactions
  */
 const { Types, Creators } = createActions({
+  // Init Data
+  initData: null,
   // Login User
   login: ['data'],
+  // The operation has started and is loading
+  loginIsLoading: null,
   // User informations were successfully fetched
   loginSuccess: ['user'],
   // An error occurred
