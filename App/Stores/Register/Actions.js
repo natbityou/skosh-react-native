@@ -19,9 +19,17 @@ import { createActions } from 'reduxsauce'
  * @see https://github.com/infinitered/reduxsauce#createactions
  */
 const { Types, Creators } = createActions({
+  // Init Data
+  initData: null,
   // Register User
   register: ['data'],
+  // User informations were successfully registered
+  registerSuccess: null,
+  // An error occurred
+  registerFailure: ['errorMessage'],
 })
+
+
 
 export const RegisterTypes = Types
 export default Creators

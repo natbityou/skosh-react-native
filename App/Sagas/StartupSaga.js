@@ -1,6 +1,7 @@
 import { put } from 'redux-saga/effects'
 import LoginActions from 'App/Stores/Login/Actions'
 import NavigationService from 'App/Services/NavigationService'
+import RegisterActions from 'App/Stores/Register/Actions'
 
 /**
  * The startup saga is the place to define behavior to execute when the application starts.
@@ -9,6 +10,7 @@ export function* startup() {
   // Dispatch a redux action using `put()`
   // @see https://redux-saga.js.org/docs/basics/DispatchingActions.html
   yield put(LoginActions.initData())
+  yield put(RegisterActions.initData())
 
   // Add more operations you need to do at startup here
   // ...

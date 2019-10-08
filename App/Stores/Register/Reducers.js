@@ -8,14 +8,32 @@ import { INITIAL_STATE } from './InitialState'
 import { createReducer } from 'reduxsauce'
 import { RegisterTypes } from './Actions'
 
+export const initData = (state) => ({
+  ...state,
+  user: {},
+  registerErrorMessage: null,
+})
+
 export const registerSuccess = (state) => ({
   ...state,
   registerSuccess: true,
+  registerErrorMessage: null,
 })
+
+export const registerFailure = (state, { errorMessage }) => ({
+  ...state,
+  user: {},
+  registerErrorMessage: errorMessage,
+})
+
 
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */
 export const reducer = createReducer(INITIAL_STATE, {
-  //[RegisterTypes.REGISTER]: register,
+  // [RegisterTypes.REGISTER]: register,
+  [RegisterTypes.INIT_DATA]: initData,
+  [RegisterTypes.REGISTER_FAILURE]: registerFailure,
+  [RegisterTypes.REGISTER_SUCCESS]: registerSuccess,
+  
 })

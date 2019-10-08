@@ -57,6 +57,12 @@ function registerUser(data) {
 
     return null
   })
+  .catch((error) => {
+    if (error.response) {
+      console.log(error.response);
+    }
+    console.log("Error registering", error);
+  });
 }
 
 function loginUser(data) {

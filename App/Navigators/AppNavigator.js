@@ -10,8 +10,8 @@ import DetailsScreen from '../Containers/Details/DetailsScreen';
 
 
 
-const AppStack = createStackNavigator({ Home: HomeScreen, Details: DetailsScreen });
-const AuthStack = createStackNavigator({ Login: LoginScreen, Register: RegisterScreen });
+const AppStack = createStackNavigator({ Home: HomeScreen, Details: DetailsScreen }) ;
+const AuthStack = createStackNavigator({ Login: LoginScreen, Register: RegisterScreen} , { mode: 'modal', headerMode: 'none',} );
 
 export default createAppContainer(
   createSwitchNavigator(

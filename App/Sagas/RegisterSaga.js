@@ -1,6 +1,7 @@
 import { put, call } from 'redux-saga/effects'
 import RegisterActions from 'App/Stores/Register/Actions'
 import { userService } from 'App/Services/UserService'
+import NavigationService from 'App/Services/NavigationService'
 
 /**
  * A saga can contain multiple functions.
@@ -9,7 +10,14 @@ import { userService } from 'App/Services/UserService'
 export function* registerUser(action) {
   // Send informations to API
   const user = yield call(userService.registerUser, action.data)
-  
   console.log(user)
-}
 
+  if (user) {
+    yield put(RegisterActions.registerSuccess(user))
+    NavigationService.navigate('Home')
+  } else {
+    yield put(
+      RegisterActions.registerFailure('Unable to register')
+    )
+  }
+}

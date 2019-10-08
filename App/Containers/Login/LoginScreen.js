@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ActivityIndicator, Keyboard, Text, TouchableWithoutFeedback, KeyboardAvoidingView, View, TextInput, } from 'react-native';
+import { TouchableOpacity, ActivityIndicator, Keyboard, Text, TouchableWithoutFeedback, KeyboardAvoidingView, View, TextInput, } from 'react-native';
 import styles from './LoginScreenStyle';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux'
@@ -30,14 +30,16 @@ class LoginScreen extends React.Component {
                                 secureTextEntry 
                                 ref={(input) => this.passwordInput = input}
                                 />   
-                            <Button
-                            buttonStyle={styles.loginButton}
-                            onPress={() => this._login()}
-                            title="Login"
-                            />    
-                            <Button buttonStyle={styles.loginButton}
-                            onPress={ () => this.props.navigation.navigate('Register')} 
-                            title="Register" />  
+
+                            <TouchableOpacity
+                            onPress={() => this._login()}>
+                            <Text style={styles.loginText}>Login</Text> 
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.loginButton}
+                            onPress={ () => this.props.navigation.navigate('Register')}>
+                            <Text style={styles.registerText}>Register</Text> 
+                            </TouchableOpacity>
                             {this._renderErrorMessage()}
                         </View>
                     </View>

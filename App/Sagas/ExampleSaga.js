@@ -19,7 +19,7 @@ export function* fetchUser() {
     yield put(ExampleActions.fetchUserSuccess(user))
   } else {
     yield put(
-      ExampleActions.fetchUserFailure('There was an error while fetching user informations.')
+      ExampleActions.fetchUserFailure('Unable to fetch user')
     )
   }
 }

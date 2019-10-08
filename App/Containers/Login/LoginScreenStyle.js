@@ -5,6 +5,7 @@ export default StyleSheet.create({
 
     containerView: {
         flex: 1,
+        backgroundColor: "#f77754",
     },
     loginScreenContainer: {
         flex: 1,
@@ -12,16 +13,17 @@ export default StyleSheet.create({
     logoText: {
     fontSize: 40,
     fontWeight: "800",
-    marginTop: 150,
+    marginTop: 250,
     marginBottom: 30,
-    textAlign: 'center',
+    textAlign: 'center',    
+    color: 'white',
     },
     loginFormView: {
         flex: 1
     },     
     loginFormInput: {
         height: 43,
-        fontSize: 14,
+        fontSize: 20,
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#eaeaea',
@@ -32,11 +34,18 @@ export default StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
     },
-    loginButton: {
-        backgroundColor: '#3897f1',
-        borderRadius: 5,
+    loginText: {
+        fontSize:20,
         height: 45,
-        marginTop: 10,
+        marginTop: 30,
+        color:"white",
+        textAlign: 'center',
+        },
+
+    registerText: {
+        fontSize:20,
+        color:"white",
+        textAlign: 'center',
         },
     error: {
         ...Fonts.style.normal,

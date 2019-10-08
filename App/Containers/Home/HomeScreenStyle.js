@@ -1,53 +1,46 @@
 import { StyleSheet } from 'react-native'
 
-
-
-
 export default StyleSheet.create({
 container:{
     marginTop: 20,
     padding: 10,
 },
-
 Text: {
-    fontSize:16,
+    fontSize:30,
     textAlign: "center",
+    fontWeight: "bold",
+    paddingTop: 5,
+    paddingBottom: 15,
 },
 list: {
-    paddingHorizontal: 17,
-    backgroundColor:"#E6E6E6",
+    backgroundColor:"white",
 },
 separator: {
     marginTop: 10,
 },
 /******** card **************/
 card:{
-    shadowColor: '#00000021',
-    shadowOffset: {
-    width: 2
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-    marginVertical: 8,
-    backgroundColor:"white"
+paddingTop: 20,
+borderRadius:25,
+overflow: 'hidden',
+backgroundColor:"white"
 },
 cardHeader: {
-    paddingVertical: 17,
+    paddingVertical: 10,
     paddingHorizontal: 16,
     borderTopLeftRadius: 1,
     borderTopRightRadius: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
 },
 cardContent: {
-    paddingVertical: 12.5,
-    paddingHorizontal: 16,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
 },
 cardFooter:{
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: 12.5,
-    paddingBottom: 25,
+    paddingBottom: 12.5,
     paddingHorizontal: 16,
     borderBottomLeftRadius: 1,
     borderBottomRightRadius: 1,
@@ -55,12 +48,12 @@ cardFooter:{
 },
 cardImage:{
     flex: 1,
-    height: 150,
+    height: 175,
     width: null,
 },
 /******** card components **************/
 title:{
-    fontSize:18,
+    fontSize:20,
     flex:1,
 }, 
 description:{
@@ -70,23 +63,14 @@ description:{
     marginTop:5,
     marginBottom:5,
 },
-time:{
-    fontSize:13,
-    color: "#808080",
-    marginTop: 5
+handicon:{
+    marginRight: 10,
+    color:"#f77754",
 },
-icon: {
-    width:25,
-    height:25,
-},
-iconData:{
-    width:15,
-    height:15,
-    marginTop:5,
-    marginRight:5
-},
-timeContainer:{
-    flexDirection:'row'
+arrowicon:{
+    marginLeft:20,
+    color:"#f77754",
+ 
 },
 /******** social bar ******************/
 socialBarContainer: {
@@ -100,10 +84,12 @@ socialBarSection: {
     flexDirection: 'row',
     flex: 1,
 },
-socialBarlabel: {
-    marginLeft: 8,
+socialBarLabel: {
+    marginLeft: 2,
+    paddingBottom: 4,
     alignSelf: 'flex-end',
     justifyContent: 'center',
+    fontSize: 18,
 },
 socialBarButton:{
     flexDirection: 'row',
