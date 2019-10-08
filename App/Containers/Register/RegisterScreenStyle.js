@@ -21,7 +21,7 @@ export default StyleSheet.create({
     },  
     loginFormInput: {
         height: 43,
-        fontSize: 14,
+        fontSize: 20,
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#eaeaea',
@@ -39,10 +39,54 @@ export default StyleSheet.create({
         color:"white",
         textAlign: 'center',
         },
+
+    cameraButton: {
+        paddingLeft: 8,
+        paddingTop: 20,
+        alignItems: 'center',
+    },
+    uploadText:{
+        textAlign:"center",
+        color: "white",
+        fontSize: 15,
+    },
     error: {
         ...Fonts.style.normal,
         textAlign: 'center',
         marginBottom: 5,
         color: 'red',  
     }, 
+
+    //Modal
+    camerarollContainer: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        marginTop: 40,
+    },
+    imageGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center'
+    },
+    picture: {
+        width: 100,
+        height: 100,
+        margin: 10,
+    },
+    photosContainer:{
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        height: 'auto',
+        justifyContent: 'center'
+      },
+      photosCard:{
+        marginTop:10,
+      },
+      photo:{
+        width:80,
+        height:80,
+        borderRadius:100,
+        marginTop:5,
+        marginRight:5,
+      },
 })
