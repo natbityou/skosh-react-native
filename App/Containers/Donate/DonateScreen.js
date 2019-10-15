@@ -1,8 +1,8 @@
 import React from 'react'
-import { Image, Text, FlatList, View, TouchableHighlight, Modal, ScrollView, Alert } from 'react-native'
+import { Image, Text, FlatList, View, TouchableHighlight, TouchableOpacity, Modal, ScrollView, Alert } from 'react-native'
 import CameraRoll from "@react-native-community/cameraroll";
 import styles from './DonateScreenStyle'
-import  Fonts  from 'App/Theme/googleFonts/Fonts';
+import Icon from 'react-native-vector-icons/Feather';
 
 export default class DonateScreen extends React.Component {
   
@@ -73,13 +73,14 @@ export default class DonateScreen extends React.Component {
                 </View>
             </Modal>
             <Image style={styles.iconData} source={{uri:"https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}}/>
-            <Text style={styles.title}>Donate your unneeded items</Text>
-            <Text style={styles.description}>This Skosh challeges you pick up 1 or 2 pieces of litter off the ground today.
-                Let's inspire other people to pick up litter with a little kind gesture for mother nature and to keep our neighbourhood beautiful and clean. 
-            </Text>
+            <Text style={styles.title}>Donate your unused items</Text>
+            <Text style={styles.description}>Your items aren’t paying rent, so what are you keeping them? 
+                                                There are many families in need of usable items. 
+                                                There are disaster victims, underprivileged people, 
+                                                and children in need, and your donations can help.</Text>
                                 
             <View style={styles.photosCard}>
-                <Text style={styles.cardTittle}>Join the kindness train!</Text>   
+                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
                     <View style={styles.photosContainer}>
                         <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar1.png"}} />
@@ -91,12 +92,13 @@ export default class DonateScreen extends React.Component {
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
                     </View>
             </View>       
-            <TouchableHighlight
+            <TouchableOpacity
                 onPress={() => {
                     this._loadCameraRoll();
                 }}>
-                <Text>Show Modal</Text>
-            </TouchableHighlight>
+                <Icon style={styles.uploadicon} name="upload" size={30} color="black"/>
+                <Text style={styles.uploadText}>Upload your deed</Text>
+            </TouchableOpacity>
         </View>
         );
     }

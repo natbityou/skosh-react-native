@@ -1,10 +1,10 @@
 import React from 'react'
-import { Image, Text, FlatList, View, TouchableHighlight, Modal, ScrollView, Alert } from 'react-native'
+import { Image, Text, FlatList, View, TouchableHighlight, TouchableOpacity, Modal, ScrollView, Alert } from 'react-native'
 import CameraRoll from "@react-native-community/cameraroll";
-import styles from './DetailsScreenStyle'
-import  Fonts  from 'App/Theme/googleFonts/Fonts';
+import styles from './LitterScreenStyle'
+import Icon from 'react-native-vector-icons/Feather';
 
-export default class DetailsScreen extends React.Component {
+export default class LitterScreen extends React.Component {
   
     constructor(props) {
         super(props);
@@ -79,7 +79,7 @@ export default class DetailsScreen extends React.Component {
             </Text>
                                 
             <View style={styles.photosCard}>
-                <Text style={styles.cardTittle}>Join the kindness train!</Text>   
+                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
                     <View style={styles.photosContainer}>
                         <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar1.png"}} />
@@ -91,12 +91,13 @@ export default class DetailsScreen extends React.Component {
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
                     </View>
             </View>       
-            <TouchableHighlight
+            <TouchableOpacity
                 onPress={() => {
                     this._loadCameraRoll();
                 }}>
-                <Text>Show Modal</Text>
-            </TouchableHighlight>
+                <Icon style={styles.uploadicon} name="upload" size={30} color="black"/>
+                <Text style={styles.uploadText}>Upload your deed</Text>
+            </TouchableOpacity>
         </View>
         );
     }

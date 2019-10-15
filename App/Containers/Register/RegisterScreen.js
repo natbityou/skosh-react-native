@@ -117,13 +117,6 @@ class RegisterScreen extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </KeyboardAvoidingView>
-                /* <TouchableHighlight
-                    onPress={() => {
-                        this._loadCameraRoll();
-                    }}>
-                    <Text>Show Modal</Text>
-                </TouchableHighlight> */
-            /* </View>        */
         );
     }
 

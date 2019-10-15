@@ -6,13 +6,13 @@ import RegisterScreen from 'App/Containers/Register/RegisterScreen';
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen';
 import LoginScreen from 'App/Containers/Login/LoginScreen';
 import HomeScreen from '../Containers/Home/HomeScreen';
-import DetailsScreen from '../Containers/Details/DetailsScreen';
+import LitterScreen from '../Containers/Litter/LitterScreen';
 import CoffeeScreen from '../Containers/Coffee/CoffeeScreen';
 import DonateScreen from '../Containers/Donate/DonateScreen';
 
 
 
-const AppStack = createStackNavigator({ Home: HomeScreen, Details: DetailsScreen, Coffee: CoffeeScreen, Donate: DonateScreen}) ;
+const AppStack = createStackNavigator({ Home: HomeScreen, Litter: LitterScreen, Coffee: CoffeeScreen, Donate: DonateScreen}) ;
 const AuthStack = createStackNavigator({ Login: LoginScreen, Register: RegisterScreen} , { mode: 'modal', headerMode: 'none',} );
 
 export default createAppContainer(

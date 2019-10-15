@@ -1,7 +1,8 @@
 import React from 'react'
-import { Image, Text, FlatList, View, TouchableHighlight, Modal, ScrollView, Alert } from 'react-native'
+import { Image, Text, View, TouchableHighlight, TouchableOpacity, Modal, ScrollView, Alert } from 'react-native'
 import CameraRoll from "@react-native-community/cameraroll";
 import styles from './CoffeeScreenStyle'
+import Icon from 'react-native-vector-icons/Feather';
 
 export default class CoffeeScreen extends React.Component {
   
@@ -72,13 +73,13 @@ export default class CoffeeScreen extends React.Component {
                 </View>
             </Modal>
             <Image style={styles.iconData} source={{uri:"https://images.unsplash.com/photo-1556742059-47b93231f536?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"}}/>
-            <Text style={styles.title}>Buy a stranger a coffee</Text>
-            <Text style={styles.description}>This Skosh challeges you pick up 1 or 2 pieces of litter off the ground today.
-                Let's inspire other people to pick up litter with a little kind gesture for mother nature and to keep our neighbourhood beautiful and clean. 
-            </Text>
+            <Text style={styles.title}>Pay for a strangers coffee</Text>
+            <Text style={styles.description}>Let's make someone's day by paying for their coffee
+                                            Kindness is contagious and something we should all want to 
+                                            pass on and spread to one another.</Text>
                                 
             <View style={styles.photosCard}>
-                <Text style={styles.cardTittle}>Join the kindness train!</Text>   
+                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
                     <View style={styles.photosContainer}>
                         <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar1.png"}} />
@@ -90,12 +91,13 @@ export default class CoffeeScreen extends React.Component {
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
                     </View>
             </View>       
-            <TouchableHighlight
+            <TouchableOpacity
                 onPress={() => {
                     this._loadCameraRoll();
                 }}>
-                <Text>Show Modal</Text>
-            </TouchableHighlight>
+                <Icon style={styles.uploadicon} name="upload" size={30} color="black"/>
+                <Text style={styles.uploadText}>Upload your deed</Text>
+            </TouchableOpacity>
         </View>
         );
     }

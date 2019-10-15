@@ -74,7 +74,7 @@ class HomeScreen extends React.Component {
                   </TouchableOpacity>
                 </View>
                 <View style={styles.socialBarSection}>
-                  <TouchableOpacity onPress={() => {if (item.id == 1){this.props.navigation.navigate('Details')} 
+                  <TouchableOpacity onPress={() => {if (item.id == 1){this.props.navigation.navigate('Litter')} 
                                                     else if (item.id == 2){this.props.navigation.navigate('Coffee')} 
                                                     else if (item.id == 3){this.props.navigation.navigate('Donate')}
                                                     else console.log('puff')}} 

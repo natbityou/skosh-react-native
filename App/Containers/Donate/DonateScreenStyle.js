@@ -7,9 +7,14 @@ export default StyleSheet.create({
     },
     title:{
         fontSize:25,
+        paddingTop:10,
+        paddingLeft:10,
     },
+
     description:{
         fontSize:20,
+        paddingTop:15,
+        paddingLeft:10,
     },
     camerarollContainer: {
         flex: 1,
@@ -32,6 +37,11 @@ export default StyleSheet.create({
         height: 'auto',
         justifyContent: 'center'
       },
+    cardTitle:{
+        fontSize:18,
+        textAlign: 'center',
+        paddingTop: 20,
+    },
     photosCard:{
         marginTop:10,
     },
@@ -42,6 +52,10 @@ export default StyleSheet.create({
         marginTop:5,
         marginRight:5,
     },
+    upload:{
+        fontSize: 18,
+        paddingTop:10,
+    }
 });   
 
 
