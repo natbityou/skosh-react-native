@@ -9,6 +9,8 @@ export default StyleSheet.create({
     },
     loginScreenContainer: {
         flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center'
     }, 
     logoText: {
     fontSize: 40,
@@ -40,7 +42,7 @@ export default StyleSheet.create({
         marginTop: 30,
         color:"white",
         textAlign: 'center',
-        },
+    },
 
     registerText: {
         fontSize:20,
@@ -53,4 +55,17 @@ export default StyleSheet.create({
         marginBottom: 5,
         color: 'red',  
     }, 
-})
+    logoContainer: {
+        flex: 1,
+        alignContent:'center',
+        justifyContent: 'center'
+    },
+
+    logo: {
+       marginTop:250,
+       marginLeft: 15,
+       width: 350,
+       height: 350,
+    },
+
+});

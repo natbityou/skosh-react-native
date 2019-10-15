@@ -1,10 +1,10 @@
 import React from 'react'
 import { Image, Text, FlatList, View, TouchableHighlight, Modal, ScrollView, Alert } from 'react-native'
 import CameraRoll from "@react-native-community/cameraroll";
-import styles from './DetailsScreenStyle'
+import styles from './DonateScreenStyle'
 import  Fonts  from 'App/Theme/googleFonts/Fonts';
 
-export default class DetailsScreen extends React.Component {
+export default class DonateScreen extends React.Component {
   
     constructor(props) {
         super(props);
@@ -72,8 +72,8 @@ export default class DetailsScreen extends React.Component {
                     </ScrollView>
                 </View>
             </Modal>
-            <Image style={styles.iconData} source={{uri:"https://images.unsplash.com/photo-1563245159-f793f19d8c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"}}/>
-            <Text style={styles.title}>Pick up litter</Text>
+            <Image style={styles.iconData} source={{uri:"https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}}/>
+            <Text style={styles.title}>Donate your unneeded items</Text>
             <Text style={styles.description}>This Skosh challeges you pick up 1 or 2 pieces of litter off the ground today.
                 Let's inspire other people to pick up litter with a little kind gesture for mother nature and to keep our neighbourhood beautiful and clean. 
             </Text>

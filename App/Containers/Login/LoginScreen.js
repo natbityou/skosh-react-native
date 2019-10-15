@@ -1,9 +1,10 @@
 import React from 'react'
-import { TouchableOpacity, ActivityIndicator, Keyboard, Text, TouchableWithoutFeedback, KeyboardAvoidingView, View, TextInput, } from 'react-native';
+import { TouchableOpacity, ActivityIndicator, Image, Keyboard, Text, TouchableWithoutFeedback, KeyboardAvoidingView, View, TextInput, } from 'react-native';
 import styles from './LoginScreenStyle';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux'
 import LoginActions from 'App/Stores/Login/Actions'
+import { Images } from 'App/Theme'
 
 
 class LoginScreen extends React.Component {
@@ -17,8 +18,10 @@ class LoginScreen extends React.Component {
                  ) : (
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.loginScreenContainer}>
+                    <View style={styles.logoContainer}>
+                        <Image style={styles.logo} source={Images.logo} resizeMode={'contain'} />
+                    </View>
                         <View style={styles.loginFormView}>
-                            <Text style={styles.logoText}>SKOSH</Text>
                             <TextInput placeholder = "email" placeholderColor ="c4c3cb" style = {styles.loginFormInput}
                                 autoCapitalize = 'none'
                                 returnKeyType = "next"

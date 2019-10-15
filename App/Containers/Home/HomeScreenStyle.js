@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
+import  { Fonts }  from 'App/Theme/googleFonts/Fonts';
+
 
 export default StyleSheet.create({
 container:{
@@ -55,6 +57,7 @@ cardImage:{
 title:{
     fontSize:20,
     flex:1,
+    // fontFamily: Fonts.Roboto,
 }, 
 description:{
     fontSize:15,
@@ -62,6 +65,7 @@ description:{
     flex:1,
     marginTop:5,
     marginBottom:5,
+    // fontFamily: Fonts.Roboto,
 },
 handicon:{
     marginRight: 10,

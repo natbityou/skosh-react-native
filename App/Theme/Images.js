@@ -3,6 +3,7 @@
  */
 
 export default {
-  logo: require('App/Assets/Images/TOM.png'),
+  logo: require('App/Assets/Images/Logo.png'),
   trash: require('App/Assets/Images/trash.jpg')
+  
 }

@@ -8,9 +8,10 @@ import Icon from 'react-native-vector-icons/Feather';
 import CameraRoll from "@react-native-community/cameraroll";
 
 
+
 class RegisterScreen extends React.Component {
-    
-    constructor(props) {
+
+        constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,

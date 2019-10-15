@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   FlatList,
+  StyleSheet
 } from 'react-native';
 import styles from './HomeScreenStyle'
 import { PropTypes } from 'prop-types'
@@ -14,9 +15,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'; 'react-native-vector-i
 
 
 
+
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'SKOSH',
+    // title: 'Skosh',
     headerStyle: {
     backgroundColor: '#f77754',
     },
@@ -28,8 +30,8 @@ class HomeScreen extends React.Component {
       this.state = {
         data: [
           {id:1, title: "Pick up litter", image:"https://images.unsplash.com/photo-1563245159-f793f19d8c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80", 
-            description:"This Skosh challeges you pick up 1 or 2 pieces of litter off the ground today. Let's inspire..."},
-          {id:2, title: "Pay for strangers coffee", image:"https://images.unsplash.com/photo-1556742059-47b93231f536?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80", 
+            description:"This Skosh challeges you to pick up 1 or 2 pieces of litter off the ground today. Let's inspire..."},
+          {id:2, title: "Pay for a strangers coffee", image:"https://images.unsplash.com/photo-1556742059-47b93231f536?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80", 
             description:"Let's make someone's day buy paying for their coffee."},
           {id:3, title: "Donate your unneeded items", image:"https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80", 
             description:"Your items aren’t paying rent, so what are you keeping them?"}, 
@@ -55,7 +57,7 @@ class HomeScreen extends React.Component {
       renderItem={(post) => {
       const item = post.item;
         return (
-          <View style={styles.card} onPress={() => this.details}>
+          <View style={styles.card}>
             <Image style={styles.cardImage} source={{uri:item.image}}/>
             <View style={styles.cardHeader}>
               <View>
@@ -72,7 +74,11 @@ class HomeScreen extends React.Component {
                   </TouchableOpacity>
                 </View>
                 <View style={styles.socialBarSection}>
-                  <TouchableOpacity onPress={() => console.log('puff')} style={styles.socialBarButton}>
+                  <TouchableOpacity onPress={() => {if (item.id == 1){this.props.navigation.navigate('Details')} 
+                                                    else if (item.id == 2){this.props.navigation.navigate('Coffee')} 
+                                                    else if (item.id == 3){this.props.navigation.navigate('Donate')}
+                                                    else console.log('puff')}} 
+                                                    style={styles.socialBarButton}>
                     <Icon style={styles.arrowicon} name="arrow-right" size={30} color="#f77754" />
                   </TouchableOpacity>
                 </View>
@@ -85,12 +91,8 @@ class HomeScreen extends React.Component {
       </View>
     );
   }
-   _details() {
-  NavigationService.navigate('Details')
-  }
 }
 
-  
 HomeScreen.propTypes = {
   user: PropTypes.object,
 }
@@ -106,3 +108,4 @@ const mapStateToProps = (state) => ({
     mapStateToProps,
     mapDispatchToProps
   )(HomeScreen)
+
