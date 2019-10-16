@@ -12,6 +12,7 @@ export const initData = (state) => ({
   ...state,
   user: {},
   registerErrorMessage: null,
+  avatar: null,
 })
 
 export const registerSuccess = (state) => ({
@@ -26,6 +27,11 @@ export const registerFailure = (state, { errorMessage }) => ({
   registerErrorMessage: errorMessage,
 })
 
+export const registerImage = (state, { imageUri }) => ({
+  ...state,
+  avatar: imageUri,
+})
+
 
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
@@ -35,5 +41,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [RegisterTypes.INIT_DATA]: initData,
   [RegisterTypes.REGISTER_FAILURE]: registerFailure,
   [RegisterTypes.REGISTER_SUCCESS]: registerSuccess,
-  
+  [RegisterTypes.REGISTER_IMAGE]: registerImage,
 })

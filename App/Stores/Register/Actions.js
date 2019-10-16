@@ -23,6 +23,8 @@ const { Types, Creators } = createActions({
   initData: null,
   // Register User
   register: ['data'],
+  // Register Image
+  registerImage: ['imageUri'],
   // User informations were successfully registered
   registerSuccess: null,
   // An error occurred

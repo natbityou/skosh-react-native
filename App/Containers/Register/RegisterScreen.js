@@ -4,7 +4,6 @@ import styles from './RegisterScreenStyle'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import RegisterActions from 'App/Stores/Register/Actions'
-import Icon from 'react-native-vector-icons/Feather';
 import CameraRoll from "@react-native-community/cameraroll";
 
 
@@ -38,12 +37,9 @@ class RegisterScreen extends React.Component {
         this.setState({modalVisible: false});
     }
 
-    _selectImage(uri) {
-        // define whatever you want to happen when an image is selected here
-        this.setState({
-          selected: uri,
-        });
-        console.log('Selected image: ', uri);
+    _renderRegisterImage(imageUri) {
+        // console.log('Selected image: ', uri)
+        this.props.registerImage(imageUri);
     }
         
 
@@ -65,8 +61,8 @@ class RegisterScreen extends React.Component {
                                 <View style={styles.imageGrid}>
                                     {this.state.photos.map((p, i) => {
                                         return (
-                                            <TouchableHighlight onPress={() => this._selectImage(p.node.image.uri)}>
-                                                <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />
+                                            <TouchableHighlight onPress={() => {this._renderRegisterImage(p.node.image.uri); this._closeCameraRoll();}}>
+                                                <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />      
                                             </TouchableHighlight>
                                         );
                                     })}
@@ -84,6 +80,18 @@ class RegisterScreen extends React.Component {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View style={styles.registerScreenContainer}>
                             <View style={styles.registerFormView}>
+                                <TouchableOpacity style={styles.cameraButton}
+                                    onPress={() => {
+                                        this._loadCameraRoll();
+                                    }}>
+                                    <Image style={styles.avatar} source=
+                                        { this.props.userAvatar
+                                            ? ({uri: this.props.userAvatar})
+                                            : ({uri: "https://bootdey.com/img/Content/avatar/avatar1.png"})
+                                        }
+                                    />
+                                    <Text style={styles.uploadText}>Select a Profile Picture</Text>
+                                </TouchableOpacity> 
                                 <TextInput placeholder = "username" placeholderColor ="c4c3cb" style = {styles.loginFormInput}
                                     autoCapitalize = 'none'
                                     returnKeyType = "next"
@@ -100,14 +108,7 @@ class RegisterScreen extends React.Component {
                                     returnKeyType= "go"
                                     secureTextEntry 
                                     ref={(input) => this.passwordInput = input}
-                                    />
-                                <TouchableOpacity style={styles.cameraButton}
-                                    onPress={() => {
-                                        this._loadCameraRoll();
-                                    }}>
-                                    <Icon style={styles.uploadicon} name="upload" size={30} color="white"/>
-                                    <Text style={styles.uploadText}>Select a Profile Picture</Text>
-                                </TouchableOpacity>                           
+                                    />                          
                                 <TouchableOpacity
                                     onPress={ () => this._register()}>
                                     <Text style={styles.registerText}>Register</Text> 
@@ -119,7 +120,6 @@ class RegisterScreen extends React.Component {
                 </KeyboardAvoidingView>
         );
     }
-
     _renderRegisterErrorMessage() {
         if (this.props.registerErrorMessage) {
             return <Text style={styles.error}>{this.props.registerErrorMessage}</Text>;
@@ -139,15 +139,18 @@ class RegisterScreen extends React.Component {
 RegisterScreen.propTypes = {
     register: PropTypes.func,
     registerErrorMessage: PropTypes.string,
-
+    userAvatar: PropTypes.string,
+    registerImage: PropTypes.func,
   }
   
     const mapStateToProps = (state) => ({
         registerErrorMessage: state.register.registerErrorMessage,
+        userAvatar : state.register.avatar,
     })
   
     const mapDispatchToProps = (dispatch) => ({
         register: (registerData) => dispatch(RegisterActions.register(registerData)),
+        registerImage: (uri) => dispatch(RegisterActions.registerImage(uri)),
     })
   
   export default connect(

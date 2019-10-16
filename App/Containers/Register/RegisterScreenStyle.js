@@ -15,7 +15,7 @@ export default StyleSheet.create({
     },   
     topText: {
         fontSize: 20,
-        paddingTop: 250,
+        paddingTop: 230,
         textAlign: 'center',
         color: 'white',
     },  
@@ -45,10 +45,17 @@ export default StyleSheet.create({
         paddingTop: 20,
         alignItems: 'center',
     },
+    avatar: {
+        width:100,
+        height:100,
+        borderRadius:100,
+        marginRight:5,
+    },
     uploadText:{
         textAlign:"center",
         color: "white",
         fontSize: 15,
+        paddingBottom:10,
     },
     error: {
         ...Fonts.style.normal,
@@ -79,10 +86,10 @@ export default StyleSheet.create({
         height: 'auto',
         justifyContent: 'center'
       },
-      photosCard:{
+    photosCard:{
         marginTop:10,
       },
-      photo:{
+    photo:{
         width:80,
         height:80,
         borderRadius:100,
