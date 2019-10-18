@@ -18,7 +18,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'; 'react-native-vector-i
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    // title: 'Skosh',
     headerStyle: {
     backgroundColor: '#f77754',
     },
@@ -51,9 +50,9 @@ class HomeScreen extends React.Component {
         }}
         ItemSeparatorComponent={() => {
           return (
-      <View style={styles.separator}/>
-    )
-  }}
+            <View style={styles.separator}/>
+          )
+        }}
       renderItem={(post) => {
       const item = post.item;
         return (
@@ -85,7 +84,7 @@ class HomeScreen extends React.Component {
               </View>
             </View>
           </View>
-          )
+        )
         }}/>
         </ScrollView>
       </View>

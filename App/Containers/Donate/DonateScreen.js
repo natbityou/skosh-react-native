@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Text, FlatList, View, TouchableHighlight, TouchableOpacity, Modal, ScrollView, Alert } from 'react-native'
 import CameraRoll from "@react-native-community/cameraroll";
-import styles from './DonateScreenStyle'
+import styles from '../Shared/SkoshScreenStyle';
 import Icon from 'react-native-vector-icons/Feather';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,11 +11,20 @@ class DonateScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: [
+                {id:1, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar1.png"},
+                {id:2, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar2.png"},
+                {id:3, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar3.png"},
+                {id:4, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar4.png"},
+                {id:5, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar5.png"},
+                {id:6, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar6.png"},
+                ],
             modalVisible: false,
+            modalVisible2: false,
             photos: []
         };
     }
-
+    // Camera roll modal
     _loadCameraRoll = () => {
         CameraRoll.getPhotos({
                 first: 20,
@@ -37,6 +46,15 @@ class DonateScreen extends React.Component {
     _renderUploadDeed(imageUri) {
         console.log('Selected image: ', imageUri)
         // this.props.UploadDeed(imageUri);
+    }
+
+    // Profile modal
+    _loadProfile = () => {
+        this.setState({modalVisible2: true});
+    };
+
+    _closeProfile = () => {
+        this.setState({modalVisible2: false});
     }
         
     render() {
@@ -77,36 +95,54 @@ class DonateScreen extends React.Component {
                                                 There are disaster victims, underprivileged people, 
                                                 and children in need, and your donations can help.</Text>
                                 
-            <View style={styles.photosCard}>
-                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
-                <View style={styles.photosContainer}>  
-                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar1.png"}} />
-                    </TouchableHighlight>
-                    <TouchableHighlight  onPress={() => this._selectImage(image.uri)}>
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar2.png"}} />
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar3.png"}} />
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar4.png"}} />
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar5.png"}} />
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
-                    </TouchableHighlight>  
-                </View>
+            <Text style={styles.cardTitle}>Join the kindness train!</Text>   
+            <View>
+                <FlatList 
+                style={styles.list}
+                numColumns={4}
+                data={this.state.data}
+                keyExtractor= {(item) => {
+                    return item.id;
+                }}
+                ItemSeparatorComponent={() => {
+                    return (
+                        <View style={styles.separator}/>
+                    )
+                }}
+                renderItem={(post) => {
+                const item = post.item;
+                    return (
+                        <View style={styles.card}>
+                            <TouchableHighlight onPress={() => { this._loadProfile();
+                            }}>
+                                <Image style={styles.cardImage} source={{uri:item.image}}/>
+                            </TouchableHighlight>
+                        </View>
+                    )
+            }}/>
+                <TouchableOpacity
+                    onPress={() => {
+                        this._loadCameraRoll();
+                    }}>
+                    <Icon style={styles.uploadicon} name="upload" size={30} color="black"/>
+                    <Text style={styles.uploadText}>Upload your deed</Text>
+                </TouchableOpacity>
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={this.state.modalVisible2}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed.');
+                }}
+            >
+                <TouchableHighlight style={styles.back}
+                    onPress={() => {
+                    this._closeProfile();
+                    }}>
+                    <Text>Back</Text>
+                </TouchableHighlight>
+            </Modal>
             </View>     
-            <TouchableOpacity
-                onPress={() => {
-                    this._loadCameraRoll();
-                }}>
-                <Icon style={styles.uploadicon} name="upload" size={30} color="black"/>
-                <Text style={styles.uploadText}>Upload your deed</Text>
-            </TouchableOpacity>
         </View>
         );
     }
