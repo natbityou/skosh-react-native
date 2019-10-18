@@ -1,10 +1,12 @@
 import React from 'react'
 import { Image, Text, FlatList, View, TouchableHighlight, TouchableOpacity, Modal, ScrollView, Alert } from 'react-native'
 import CameraRoll from "@react-native-community/cameraroll";
-import styles from './LitterScreenStyle'
+import styles from './LitterScreenStyle';
 import Icon from 'react-native-vector-icons/Feather';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class LitterScreen extends React.Component {
+class LitterScreen extends React.Component {
   
     constructor(props) {
         super(props);
@@ -32,13 +34,10 @@ export default class LitterScreen extends React.Component {
     _closeCameraRoll = () => {
         this.setState({modalVisible: false});
     }
-    _selectImage(uri) {
-        // define whatever you want to happen when an image is selected here
-        this.setState({
-          selected: uri,
-        });
-        console.log('Selected image: ', uri);
-      }
+    _renderUploadDeed(imageUri) {
+        console.log('Selected image: ', imageUri)
+        // this.props.UploadDeed(imageUri);
+    }
         
 
     render() {
@@ -57,8 +56,8 @@ export default class LitterScreen extends React.Component {
                         <View style={styles.imageGrid}>
                             {this.state.photos.map((p, i) => {
                                 return (
-                                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
-                                        <Image style={styles.picture}  key={i} source={{ uri: p.node.image.uri }} />
+                                    <TouchableHighlight onPress={() => {this._renderUploadDeed(p.node.image.uri); this._closeCameraRoll();}}>
+                                        <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />      
                                     </TouchableHighlight>
                                 );
                             })}
@@ -76,21 +75,30 @@ export default class LitterScreen extends React.Component {
             <Text style={styles.title}>Pick up litter</Text>
             <Text style={styles.description}>This Skosh challeges you pick up 1 or 2 pieces of litter off the ground today.
                 Let's inspire other people to pick up litter with a little kind gesture for mother nature and to keep our neighbourhood beautiful and clean. 
-            </Text>
-                                
+            </Text>        
             <View style={styles.photosCard}>
                 <Text style={styles.cardTitle}>Join the kindness train!</Text>   
-                    <View style={styles.photosContainer}>
-                        <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                <View style={styles.photosContainer}>  
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar1.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar2.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar3.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar4.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar5.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
                     </TouchableHighlight>
-                    </View>
-            </View>       
+                    <TouchableHighlight  onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar2.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar3.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar4.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar5.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
+                    </TouchableHighlight>  
+                </View>
+            </View>    
             <TouchableOpacity
                 onPress={() => {
                     this._loadCameraRoll();
@@ -101,6 +109,15 @@ export default class LitterScreen extends React.Component {
         </View>
         );
     }
-  }
+}
+
+LitterScreen.propTypes = {
+    uploadDeed: PropTypes.func,
+}
+const mapDispatchToProps = (dispatch) => ({
+    uploadDeed: (uri) => dispatch(UploadActions.uploadDeed(uri)),
+})
   
-  
+export default connect(
+    mapDispatchToProps
+  )(LitterScreen)

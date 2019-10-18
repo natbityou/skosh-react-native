@@ -45,7 +45,15 @@ function fetchUser() {
 }
 
 function registerUser(data) {
-  return userApiClient.post('/register', data).then((response) => {
+  console.log(data);
+
+  var formData = new FormData();
+    formData.append('email', data.email);
+    formData.append('username', data.username);
+    formData.append('password', data.password);
+    formData.append('avatar', { uri: data.avatar, name: 'userProfile.jpg', type: 'image/jpg' });
+
+  return userApiClient.post('/register', formData).then((response) => {
     if (in200s(response.status)) {
       console.log("woohoo");
       console.log(response.data);

@@ -33,7 +33,7 @@ class HomeScreen extends React.Component {
             description:"This Skosh challeges you to pick up 1 or 2 pieces of litter off the ground today. Let's inspire..."},
           {id:2, title: "Pay for a strangers coffee", image:"https://images.unsplash.com/photo-1556742059-47b93231f536?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80", 
             description:"Let's make someone's day buy paying for their coffee."},
-          {id:3, title: "Donate your unneeded items", image:"https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80", 
+          {id:3, title: "Donate your unused items", image:"https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80", 
             description:"Your items aren’t paying rent, so what are you keeping them?"}, 
           ]
       };

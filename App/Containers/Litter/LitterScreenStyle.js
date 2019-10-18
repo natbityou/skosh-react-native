@@ -56,7 +56,14 @@ export default StyleSheet.create({
     upload:{
         fontSize: 18,
         paddingTop:10,
-    }
+    },
+    uploadicon: {
+        textAlign: 'center',
+        paddingTop: 15,
+    },
+    uploadText: {
+        textAlign: 'center',
+    },
 });   
 
 

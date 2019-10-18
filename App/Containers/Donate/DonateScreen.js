@@ -3,8 +3,10 @@ import { Image, Text, FlatList, View, TouchableHighlight, TouchableOpacity, Moda
 import CameraRoll from "@react-native-community/cameraroll";
 import styles from './DonateScreenStyle'
 import Icon from 'react-native-vector-icons/Feather';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class DonateScreen extends React.Component {
+class DonateScreen extends React.Component {
   
     constructor(props) {
         super(props);
@@ -32,15 +34,11 @@ export default class DonateScreen extends React.Component {
     _closeCameraRoll = () => {
         this.setState({modalVisible: false});
     }
-    _selectImage(uri) {
-        // define whatever you want to happen when an image is selected here
-        this.setState({
-          selected: uri,
-        });
-        console.log('Selected image: ', uri);
-      }
+    _renderUploadDeed(imageUri) {
+        console.log('Selected image: ', imageUri)
+        // this.props.UploadDeed(imageUri);
+    }
         
-
     render() {
         return (
         <View> 
@@ -57,8 +55,8 @@ export default class DonateScreen extends React.Component {
                         <View style={styles.imageGrid}>
                             {this.state.photos.map((p, i) => {
                                 return (
-                                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
-                                        <Image style={styles.picture}  key={i} source={{ uri: p.node.image.uri }} />
+                                    <TouchableHighlight onPress={() => {this._renderUploadDeed(p.node.image.uri); this._closeCameraRoll();}}>
+                                        <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />      
                                     </TouchableHighlight>
                                 );
                             })}
@@ -81,16 +79,27 @@ export default class DonateScreen extends React.Component {
                                 
             <View style={styles.photosCard}>
                 <Text style={styles.cardTitle}>Join the kindness train!</Text>   
-                    <View style={styles.photosContainer}>
+                <View style={styles.photosContainer}>  
                     <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
                         <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar1.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar2.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar3.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar4.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar5.png"}} />
-                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
                     </TouchableHighlight>
-            </View>       
+                    <TouchableHighlight  onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar2.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar3.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar4.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar5.png"}} />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this._selectImage(image.uri)}>
+                        <Image style={styles.photo} source={{uri: "https://bootdey.com/img/Content/avatar/avatar6.png"}} />
+                    </TouchableHighlight>  
+                </View>
+            </View>     
             <TouchableOpacity
                 onPress={() => {
                     this._loadCameraRoll();
@@ -101,6 +110,16 @@ export default class DonateScreen extends React.Component {
         </View>
         );
     }
-  }
+}
+DonateScreen.propTypes = {
+    uploadDeed: PropTypes.func,
+}
+const mapDispatchToProps = (dispatch) => ({
+    uploadDeed: (uri) => dispatch(UploadActions.uploadDeed(uri)),
+})
+  
+export default connect(
+    mapDispatchToProps
+  )(DonateScreen)
   
   

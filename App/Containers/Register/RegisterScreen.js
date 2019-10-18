@@ -127,9 +127,10 @@ class RegisterScreen extends React.Component {
     }
     _register() {
         const registerData = {
-            'username' : this.usernameInput._lastNativeText,
+            'avatar': this.props.userAvatar,
+            'username': this.usernameInput._lastNativeText,
             'email': this.emailInput._lastNativeText,
-            'password' : this.passwordInput._lastNativeText,
+            'password': this.passwordInput._lastNativeText,
         }
 
         this.props.register(registerData);
