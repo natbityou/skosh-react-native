@@ -37,7 +37,6 @@ export const registerImage = (state, { imageUri }) => ({
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */
 export const reducer = createReducer(INITIAL_STATE, {
-  // [RegisterTypes.REGISTER]: register,
   [RegisterTypes.INIT_DATA]: initData,
   [RegisterTypes.REGISTER_FAILURE]: registerFailure,
   [RegisterTypes.REGISTER_SUCCESS]: registerSuccess,

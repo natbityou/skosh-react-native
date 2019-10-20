@@ -144,17 +144,17 @@ RegisterScreen.propTypes = {
     registerImage: PropTypes.func,
   }
   
-    const mapStateToProps = (state) => ({
-        registerErrorMessage: state.register.registerErrorMessage,
-        userAvatar : state.register.avatar,
-    })
-  
-    const mapDispatchToProps = (dispatch) => ({
-        register: (registerData) => dispatch(RegisterActions.register(registerData)),
-        registerImage: (uri) => dispatch(RegisterActions.registerImage(uri)),
-    })
-  
-  export default connect(
+const mapStateToProps = (state) => ({
+    registerErrorMessage: state.register.registerErrorMessage,
+    userAvatar : state.register.avatar,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    register: (registerData) => dispatch(RegisterActions.register(registerData)),
+    registerImage: (uri) => dispatch(RegisterActions.registerImage(uri)),
+})
+
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(RegisterScreen)
+    )(RegisterScreen)

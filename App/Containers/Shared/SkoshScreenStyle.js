@@ -86,7 +86,33 @@ export default StyleSheet.create({
         alignSelf: 'center'
     },
     back:{
-        paddingTop:250,
+        paddingTop:100,
+    },
+    placeholderPhoto: {
+        height:300,
+        width: 400,
+    },
+    skoshPhoto: {
+        width:120,
+        height:120,
+        marginTop: 175,
+    },
+    uploadFormInput: {
+        height: 200,
+        fontSize: 20,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#eaeaea',
+        backgroundColor: '#fafafa',
+        marginTop: 40,
+        marginBottom: 10,
+
+
+        textAlignVertical: "top"
+    },
+    submit: {
+        textAlign: 'right',
+        paddingRight: 30, 
     },
 });   
 
