@@ -19,7 +19,7 @@ const userApiClient = axios.create({
    */
   baseURL: Config.API_URL,
   headers: {
-    Accept: 'application/json',
+    'Accept': 'application/json',
     'Content-Type': 'application/json',
   },
   timeout: 3000,
@@ -77,23 +77,17 @@ function loginUser(data) {
   return userApiClient.post('/login', data)
     .then((response) => {
       if (in200s(response.status)) {
-        console.log("woohoo");
-        console.log(response.data);
-
-        return response.data
+        return response;
       }
 
-      console.log("boohoo");
-      console.log(response.data);
-
-      return null
+      return null;
     })
     .catch((error) => {
       if (error.response) {
         console.log(error.response);
       }
 
-      console.log("Error logging in", error);
+      console.log("Error Logging In!", error);
     });
 }
 

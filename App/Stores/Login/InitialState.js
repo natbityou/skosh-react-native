@@ -3,6 +3,7 @@
  */
 export const INITIAL_STATE = {
     user: {},
+    token: null,
     loginIsLoading: false,
     loginErrorMessage: null,
 }

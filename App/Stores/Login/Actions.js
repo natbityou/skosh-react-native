@@ -26,7 +26,7 @@ const { Types, Creators } = createActions({
   // The operation has started and is loading
   loginIsLoading: null,
   // User informations were successfully fetched
-  loginSuccess: ['user'],
+  loginSuccess: ['data'],
   // An error occurred
   loginFailure: ['errorMessage'],
 })

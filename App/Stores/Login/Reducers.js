@@ -21,9 +21,11 @@ export const loginIsLoading = (state) => ({
   loginErrorMessage: null,
 })
 
-export const loginSuccess = (state, { user }) => ({
+export const loginSuccess = (state, { data }) => ({
   ...state,
-  user: user,
+  user: data.user,
+  token: data.token,
+  loginIsLoading: false,
   loginErrorMessage: null,
 })
 
