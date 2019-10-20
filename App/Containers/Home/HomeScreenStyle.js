@@ -1,6 +1,4 @@
 import { StyleSheet } from 'react-native';
-import  { Fonts }  from 'App/Theme/googleFonts/Fonts';
-
 
 export default StyleSheet.create({
 container:{
