@@ -19,11 +19,17 @@ import { createActions } from 'reduxsauce'
  * @see https://github.com/infinitered/reduxsauce#createactions
  */
 const { Types, Creators } = createActions({
-  
-  skoshUpload: ['data'],
+  // Init data
+  initData: null,
+  // Submit skosh
+  skoshSubmit: ['data'],
   // skosh Image
   skoshImage: ['imageUri'],
- 
+  // skoshes were successfully submitted
+  skoshSuccess: null,
+  // An error occurred
+  skoshFailure: ['errorMessage'],
+
 })
 
 export const SkoshTypes = Types

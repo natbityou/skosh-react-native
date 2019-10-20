@@ -25,6 +25,7 @@ export function* loginUser(action) {
   // Login Successed! Save User data and JWT to the store
   yield put(LoginActions.loginSuccess(loginResponse.data));
 
+  
   // Load Homepage data
   const token = yield select(getToken);
   const skoshTypeResponse = yield call(skoshService.getSkoshTypes, token);

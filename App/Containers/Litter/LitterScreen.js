@@ -156,7 +156,7 @@ class LitterScreen extends React.Component {
                                             ref={(input) => this.captionInput = input}
                                         />
                     <TouchableOpacity
-                        onPress={ () => this._skoshUpload()}>
+                        onPress={ () => this._skoshSubmit()}>
                         <Text style={styles.submit}>Sumbit Skosh</Text> 
                     </TouchableOpacity>
                     <TouchableHighlight style={styles.back} 
@@ -198,30 +198,36 @@ class LitterScreen extends React.Component {
            </View>
         );
     }
-    _skoshUpload() {
+    _skoshSubmit() {
         const skoshData = {
             'skoshType': 1,
             'skoshPhoto': this.props.userSkoshPhoto,
             'caption': this.captionInput._lastNativeText,
         }
 
-        this.props.skoshUpload(skoshData);
+        this.props.skoshSubmit(skoshData);
+    }
+    _renderSkoshErrorMessage() {
+        if (this.props.skoshErrorMessage) {
+            return <Text style={styles.error}>{this.props.skoshErrorMessage}</Text>;
+        }
     }
 }
-
 
 LitterScreen.propTypes = {
     skoshImage: PropTypes.func, 
     userSkoshPhoto: PropTypes.string,
-    skoshUpload: PropTypes.func,
+    skoshSubmit: PropTypes.func,
+    skoshErrorMessage: PropTypes.string,
 }
 
 const mapStateToProps = (state) => ({
-    userSkoshPhoto : state.skosh.userSkoshPhoto,
+    userSkoshPhoto : state.skosh.skoshPhoto,
+    skoshErrorMessage: state.skosh.skoshErrorMessage,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    skoshUpload: (skoshData) => dispatch(SkoshActions.skoshUpload(skoshData)),
+    skoshSubmit: (skoshData) => dispatch(SkoshActions.skoshSubmit(skoshData)),
     skoshImage: (uri) => dispatch(SkoshActions.skoshImage(uri)),
 })
   

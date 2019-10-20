@@ -3,12 +3,12 @@ import { ExampleTypes } from 'App/Stores/Example/Actions'
 import { StartupTypes } from 'App/Stores/Startup/Actions'
 import { RegisterTypes } from 'App/Stores/Register/Actions'
 import { LoginTypes } from 'App/Stores/Login/Actions'
+import { SkoshTypes } from 'App/Stores/Skosh/Actions'
 import { fetchUser } from './ExampleSaga'
 import { startup } from './StartupSaga'
 import { registerUser } from './RegisterSaga'
 import { loginUser } from './LoginSaga'
-
-
+import { skoshSubmit } from './SkoshSaga'
 
 export default function* root() {
   yield all([
@@ -22,6 +22,8 @@ export default function* root() {
     // Call 'registerUser()' when a 'Register' action is triggered
     takeLatest(RegisterTypes.REGISTER, registerUser),
     // Call 'loginUser()' when a 'Register' action is triggered
-    takeLatest(LoginTypes.LOGIN, loginUser),    
+    takeLatest(LoginTypes.LOGIN, loginUser),
+    // Call 'loginUser()' when a 'SKOSH_SUBMIT' action is triggered
+    takeLatest(SkoshTypes.SKOSH_SUBMIT, skoshSubmit),
   ])
 }
