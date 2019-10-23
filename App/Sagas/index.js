@@ -9,6 +9,10 @@ import { startup } from './StartupSaga'
 import { registerUser } from './RegisterSaga'
 import { loginUser } from './LoginSaga'
 import { skoshSubmit } from './SkoshSaga'
+import { getSkoshAvatars } from './SkoshSaga'
+
+
+
 
 export default function* root() {
   yield all([
@@ -25,5 +29,8 @@ export default function* root() {
     takeLatest(LoginTypes.LOGIN, loginUser),
     // Call 'loginUser()' when a 'SKOSH_SUBMIT' action is triggered
     takeLatest(SkoshTypes.SKOSH_SUBMIT, skoshSubmit),
+     // Call 'skoshAvatars()' when a 'VIEW_SKOSH' action is triggered
+    takeLatest(SkoshTypes.VIEW_SKOSH, getSkoshAvatars),
+
   ])
 }

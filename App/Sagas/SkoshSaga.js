@@ -9,6 +9,29 @@ import NavigationService from 'App/Services/NavigationService'
 
 const getToken = (state) => state.login.token;
 
+export function* getSkoshAvatars(action) {
+  const token = yield select(getToken);
+  const skoshAvatarsResponse = yield call(skoshService.getSkoshAvatars, token, action.skoshTypeId);  
+
+  if (skoshAvatarsResponse) {
+    yield put(SkoshActions.viewSkoshSuccess(skoshAvatarsResponse.data))  
+    
+    if (action.skoshTypeId == 1) {
+      NavigationService.navigate('Litter')
+    } 
+    else if (action.skoshTypeId == 2) {
+      NavigationService.navigate('Coffee')
+    } 
+    else if (action.skoshTypeId == 3) {
+      NavigationService.navigate('Donate')
+    }
+  } else {
+      yield put(
+          SkoshActions.viewSkoshFailure('Unable to view skosh avatars')
+      )
+  }
+  }
+
 export function* skoshSubmit(action) {
   // Send informations to API
   const token = yield select(getToken);
@@ -18,7 +41,7 @@ export function* skoshSubmit(action) {
 
   if (submitResponse) {
     yield put(SkoshActions.skoshSuccess(submitResponse))
-    NavigationService.navigate('Litter')
+    NavigationService.goBack()
   } else {
     yield put(
       SkoshActions.skoshFailure('Unable to submit skosh')

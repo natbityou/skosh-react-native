@@ -11,6 +11,7 @@ import styles from './HomeScreenStyle'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'; 'react-native-vector-icons/Feather';
+import SkoshActions from 'App/Stores/Skosh/Actions'
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -55,7 +56,7 @@ class HomeScreen extends React.Component {
         data={this.state.data}
 
         keyExtractor= {(item) => {
-          return item.id;
+          return item.id + "";
         }}
 
         ItemSeparatorComponent={() => {
@@ -86,16 +87,7 @@ class HomeScreen extends React.Component {
                   <View style={styles.socialBarSection}>
                     <TouchableOpacity style={styles.socialBarButton}
                       onPress={() => {
-                        if (item.id == 1) {
-                          this.props.navigation.navigate('Litter')
-                        } 
-                        else if (item.id == 2) {
-                          this.props.navigation.navigate('Coffee')
-                        } 
-                        else if (item.id == 3) {
-                          this.props.navigation.navigate('Donate')
-                        }
-                        else console.log('puff')
+                        this._viewSkosh(item.id)
                       }}
                     >
                       <Icon style={styles.arrowicon} name="arrow-right" size={30} color="#f77754" />
@@ -110,22 +102,28 @@ class HomeScreen extends React.Component {
       </View>
     );
   }
+  _viewSkosh(skoshTypeId) {
+    this.props.viewSkosh(skoshTypeId);
+  }
 }
 
 HomeScreen.propTypes = {
   user: PropTypes.object,
-  skoshTypes: PropTypes.object,
+  skoshTypes: PropTypes.array,
+  viewSkosh: PropTypes.func,
 }
 
 const mapStateToProps = (state) => ({
   user: state.login.user,
   skoshTypes: state.home.skoshTypes,
-})
   
-const mapDispatchToProps = (dispatch) => ({
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  viewSkosh: (skoshTypeId) => dispatch(SkoshActions.viewSkosh(skoshTypeId)),
+})
+  
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(HomeScreen)

@@ -17,7 +17,7 @@ const apiClient = axios.create({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   },
-  timeout: 3000,
+  timeout: 5000,
 })
 
 function getSkoshTypes(token) {
@@ -67,8 +67,24 @@ function skoshSubmit(token, data) {
   });
 }
 
+function getSkoshAvatars(token, skoshTypeId) {
+
+  return apiClient.get('/skosh-types/' + skoshTypeId + '/skoshes', {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  }).then((response) => {
+    if (in200s(response.status)) {
+      console.log(response);
+
+      return response;
+    }
+    return null;
+  })
+}
 
 export const skoshService = {
   getSkoshTypes,
   skoshSubmit,
+  getSkoshAvatars,
 }
