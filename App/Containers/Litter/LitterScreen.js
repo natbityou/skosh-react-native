@@ -11,28 +11,10 @@ class LitterScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {id:1, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar1.png"},
-                {id:2, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar2.png"},
-                {id:3, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar3.png"},
-                {id:4, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar4.png"},
-                {id:5, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar5.png"},
-                {id:6, title: "alpaca", image:"https://bootdey.com/img/Content/avatar/avatar6.png"},
-                ],
             modalUpload: false,
             modalCameraRoll: false,
-            modalProfile: false,
             photos: []
         };
-    }
-
-    // Profile modal
-    _loadProfile = () => {
-        this.setState({modalProfile: true});
-    };
-
-    _closeProfile = () => {
-        this.setState({modalProfile: false});
     }
             
     //Upload page modal
@@ -68,12 +50,10 @@ class LitterScreen extends React.Component {
     }
 
     render() {
+        // const messages = this.props.skoshAvatars.reverse();
+
         return (
             <View>
-                <Image style={styles.iconData} 
-                        source={{uri:"https://images.unsplash.com/photo-1563245159-f793f19d8c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
-                        }}
-                />
                 <Text style={styles.title}>Pick up litter</Text>
                 <Text style={styles. description}>This Skosh challeges you pick up 1 or 
                                                 2 pieces of litter off the ground today.
@@ -82,13 +62,16 @@ class LitterScreen extends React.Component {
                                                 mother nature and to keep our
                                                 neighbourhood beautiful and clean.
                 </Text>  
-                <Text style={styles.cardTitle}>Join the kindness train!</Text>        
+                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
+                <ScrollView style={styles.scroll}>
+
+            
                     <FlatList 
                         style={styles.list}
                         numColumns={4}
-                        data={this.state.data}
-                        keyExtractor= {(item) => {
-                            return item.id;
+                        data={this.props.skoshAvatars}
+                        keyExtractor= { (item, key) => {
+                            return key;
                         }}
                         
                         ItemSeparatorComponent={() => {
@@ -96,18 +79,20 @@ class LitterScreen extends React.Component {
                             <View style={styles.separator}/>
                             )
                         }}
-                    
-                        renderItem={(post) => {
-                        const item = post.item;
+                        renderItem={(flatListItem) => {
+                            const item = flatListItem.item;
                             return (
                                 <View style={styles.card}>
-                                    <TouchableHighlight onPress={() => { this._loadProfile();
-                                    }}>
-                                        <Image style={styles.cardImage} source={{uri:item.image}}/>
-                                    </TouchableHighlight>
+                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('Profile') }}>
+                                        <Image 
+                                            style={ styles.avatar }
+                                            source={{ uri: 'data:image/png;base64,' + item.avatar }}
+                                        />
+                                    </TouchableOpacity>
                                 </View>
                         )
                     }}/>
+                </ScrollView>    
                 <TouchableOpacity
                     onPress={() => {
                         this._loadUploadPage();
@@ -115,22 +100,6 @@ class LitterScreen extends React.Component {
                     <Icon style={styles.uploadicon} name="upload" size={30} color="black"/>
                     <Text style={styles.uploadText}>Upload your deed</Text>
                 </TouchableOpacity>
-
-                <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalProfile}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
-                    }}
-                >
-                    <TouchableHighlight style={styles.back}
-                        onPress={() => {
-                        this._closeProfile();
-                        }}>
-                        <Text>Back</Text>
-                    </TouchableHighlight>
-                </Modal>
 
                 <Modal
                     animationType="slide"
@@ -207,6 +176,7 @@ class LitterScreen extends React.Component {
 
         this.props.skoshSubmit(skoshData);
     }
+
     _renderSkoshErrorMessage() {
         if (this.props.skoshErrorMessage) {
             return <Text style={styles.error}>{this.props.skoshErrorMessage}</Text>;
@@ -219,16 +189,18 @@ LitterScreen.propTypes = {
     userSkoshPhoto: PropTypes.string,
     skoshSubmit: PropTypes.func,
     skoshErrorMessage: PropTypes.string,
+    skoshAvatars: PropTypes.array,
 }
 
 const mapStateToProps = (state) => ({
     userSkoshPhoto : state.skosh.skoshPhoto,
     skoshErrorMessage: state.skosh.skoshErrorMessage,
+    skoshAvatars: state.skosh.skoshAvatars,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     skoshSubmit: (skoshData) => dispatch(SkoshActions.skoshSubmit(skoshData)),
-    skoshImage: (uri) => dispatch(SkoshActions.skoshImage(uri)),
+    skoshImage: (uri) => dispatch(SkoshActions.skoshImage(uri))    
 })
   
 export default connect(

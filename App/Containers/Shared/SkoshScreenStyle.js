@@ -49,6 +49,12 @@ export default StyleSheet.create({
         paddingTop: 20,
     },
 
+    card:{
+        paddingTop: 20,
+        borderRadius:25,
+        backgroundColor:"white",
+        },
+
     photosCard:{
         marginTop: 10,
     },
@@ -75,7 +81,7 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
 
-    cardImage:{
+    avatar:{
         height: 80,
         width: 80,
         borderRadius:100,
@@ -83,7 +89,8 @@ export default StyleSheet.create({
 
     list:{
         paddingTop: 15,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        flexDirection: "row-reverse", 
     },
     back:{
         paddingTop:100,
@@ -106,14 +113,21 @@ export default StyleSheet.create({
         backgroundColor: '#fafafa',
         marginTop: 40,
         marginBottom: 10,
-
-
         textAlignVertical: "top"
     },
     submit: {
         textAlign: 'right',
         paddingRight: 30, 
     },
+    cardImage:{
+        flex: 1,
+        height: 175,
+        width: null,
+    },
+    scroll:{
+        height: 175,
+        width: null,
+    }
 });   
 
 

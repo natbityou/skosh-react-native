@@ -45,8 +45,6 @@ class RegisterScreen extends React.Component {
 
     render() {
         return (
-            // <View> 
-                /*  */
                 <KeyboardAvoidingView style={styles.containerView} behavior="padding">
                     <Modal
                     animationType="slide"

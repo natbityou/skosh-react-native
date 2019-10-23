@@ -14,7 +14,7 @@ export function* registerUser(action) {
 
   if (user) {
     yield put(RegisterActions.registerSuccess(user))
-    NavigationService.navigate('Home')
+    NavigationService.navigate('Login')
   } else {
     yield put(
       RegisterActions.registerFailure('Unable to register')

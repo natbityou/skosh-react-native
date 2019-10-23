@@ -29,7 +29,12 @@ const { Types, Creators } = createActions({
   skoshSuccess: null,
   // An error occurred
   skoshFailure: ['errorMessage'],
-
+  // view skoshes
+  viewSkosh: ['skoshTypeId'],
+  // skoshes were successfully submitted
+  viewSkoshSuccess: ['skoshAvatars'],
+  // An error occurred
+  viewSkoshFailure: ['errorMessage'],
 })
 
 export const SkoshTypes = Types

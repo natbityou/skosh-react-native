@@ -39,6 +39,7 @@ function navigate(routeName, params) {
  * @param routeName The name of the route to navigate to. Routes are defined in RootScreen using createStackNavigator()
  * @param params Route parameters.
  */
+
 function navigateAndReset(routeName, params) {
   navigator.dispatch(
     StackActions.reset({
@@ -54,8 +55,15 @@ function navigateAndReset(routeName, params) {
   )
 }
 
+function goBack(){
+  navigator.dispatch(
+    NavigationActions.back({})
+  );
+
+}
 export default {
   navigate,
   navigateAndReset,
   setTopLevelNavigator,
+  goBack,
 }

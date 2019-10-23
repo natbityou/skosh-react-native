@@ -23,9 +23,20 @@ export const skoshSuccess = (state) => ({
   ...state,
   skoshSuccess: true,
   skoshErrorMessage: null,
+  modalUpload: false,
 })
 
 export const skoshFailure = (state, { errorMessage }) => ({
+  ...state,
+  skoshErrorMessage: errorMessage,
+})
+
+export const viewSkoshSuccess = (state, { skoshAvatars }) => ({
+  ...state,
+  skoshAvatars: skoshAvatars, 
+})
+
+export const viewSkoshFailure = (state, { errorMessage }) => ({
   ...state,
   skoshErrorMessage: errorMessage,
 })
@@ -38,4 +49,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [SkoshTypes.SKOSH_IMAGE]: skoshImage,
   [SkoshTypes.SKOSH_FAILURE]: skoshFailure,
   [SkoshTypes.SKOSH_SUCCESS]: skoshSuccess,
+  [SkoshTypes.VIEW_SKOSH_FAILURE]: viewSkoshFailure,
+  [SkoshTypes.VIEW_SKOSH_SUCCESS]: viewSkoshSuccess,
 })
