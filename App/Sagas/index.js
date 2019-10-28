@@ -10,6 +10,9 @@ import { registerUser } from './RegisterSaga'
 import { loginUser } from './LoginSaga'
 import { skoshSubmit } from './SkoshSaga'
 import { getSkoshAvatars } from './SkoshSaga'
+import { getSkoshProfile } from './SkoshSaga'
+import { getProfileAvatar } from './SkoshSaga'
+
 
 
 
@@ -31,6 +34,7 @@ export default function* root() {
     takeLatest(SkoshTypes.SKOSH_SUBMIT, skoshSubmit),
      // Call 'skoshAvatars()' when a 'VIEW_SKOSH' action is triggered
     takeLatest(SkoshTypes.VIEW_SKOSH, getSkoshAvatars),
-
+    // Call 'skoshProfile()' when a 'SKOSH_PROFILE' action is triggered
+    takeLatest(SkoshTypes.SKOSH_PROFILE, getSkoshProfile),
   ])
 }

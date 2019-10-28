@@ -48,3 +48,36 @@ export function* skoshSubmit(action) {
     )
   }
 }
+
+export function* getSkoshProfile(action) {
+  const token = yield select(getToken);
+  const skoshProfileResponse = yield call(skoshService.getSkoshProfile, token, action.userId);  
+  
+  if (skoshProfileResponse) {
+    console.log(skoshProfileResponse),
+    yield put(SkoshActions.skoshProfileSuccess(skoshProfileResponse.data)) 
+
+    NavigationService.navigate('Profile')
+  } else {
+      yield put(
+          SkoshActions.skoshProfileFailure('Unable to view skosh profile')
+      )
+  }
+}
+
+export function* getProfileAvatar(action) {
+  const token = yield select(getToken);
+  const profileAvatarResponse = yield call(skoshService.getProfileAvatar, token, action.profileAvatar);  
+  
+  if (profileAvatarResponse) {
+    console.log(profileAvatarResponse),
+    yield put(SkoshActions.profileAvatarSuccess(profileAvatarResponse.data)) 
+  } else {
+      yield put(
+          SkoshActions.profileAvatarFailure('Unable to view profile avatars')
+      )
+  }
+}
+
+
+

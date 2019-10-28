@@ -40,6 +40,23 @@ export const viewSkoshFailure = (state, { errorMessage }) => ({
   ...state,
   skoshErrorMessage: errorMessage,
 })
+export const skoshProfileSuccess = (state, { userSkoshes }) => ({
+  ...state,
+  skoshProfileInfo: userSkoshes,
+  skoshErrorMessage: null,
+})
+export const skoshProfileFailure = (state, { errorMessage }) => ({
+  ...state,
+  skoshErrorMessage: errorMessage,
+})
+
+export const setProfileAvatar = (state, { userAvatar }) => ({
+  ...state,
+  profileAvatar: userAvatar,
+})
+
+
+
 
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
@@ -49,6 +66,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [SkoshTypes.SKOSH_IMAGE]: skoshImage,
   [SkoshTypes.SKOSH_FAILURE]: skoshFailure,
   [SkoshTypes.SKOSH_SUCCESS]: skoshSuccess,
+  [SkoshTypes.SKOSH_PROFILE_SUCCESS]: skoshProfileSuccess,
+  [SkoshTypes.SKOSH_PROFILE_FAILURE]: skoshProfileFailure,
   [SkoshTypes.VIEW_SKOSH_FAILURE]: viewSkoshFailure,
   [SkoshTypes.VIEW_SKOSH_SUCCESS]: viewSkoshSuccess,
+  [SkoshTypes.SET_PROFILE_AVATAR]: setProfileAvatar,
 })

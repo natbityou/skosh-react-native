@@ -83,8 +83,25 @@ function getSkoshAvatars(token, skoshTypeId) {
   })
 }
 
+function getSkoshProfile(token, userId){
+  return apiClient.get('/users/' + userId + '/skoshes', {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  }).then((response) => {
+    if (in200s(response.status)) {
+      console.log(response);
+
+      return response;
+    }
+    return null;
+  })
+}
+
 export const skoshService = {
   getSkoshTypes,
   skoshSubmit,
   getSkoshAvatars,
+  getSkoshProfile,
+
 }

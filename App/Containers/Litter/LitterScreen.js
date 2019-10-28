@@ -50,7 +50,6 @@ class LitterScreen extends React.Component {
     }
 
     render() {
-        // const messages = this.props.skoshAvatars.reverse();
 
         return (
             <View>
@@ -81,9 +80,10 @@ class LitterScreen extends React.Component {
                         }}
                         renderItem={(flatListItem) => {
                             const item = flatListItem.item;
+
                             return (
-                                <View style={styles.card}>
-                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('Profile') }}>
+                                <View style={ styles.card }>
+                                    <TouchableOpacity onPress={() => { this._renderSkoshProfile(item.user_id, item.avatar) }}>
                                         <Image 
                                             style={ styles.avatar }
                                             source={{ uri: 'data:image/png;base64,' + item.avatar }}
@@ -182,6 +182,10 @@ class LitterScreen extends React.Component {
             return <Text style={styles.error}>{this.props.skoshErrorMessage}</Text>;
         }
     }
+    _renderSkoshProfile(userId, userAvatar) { 
+        this.props.skoshProfile(userId);
+        this.props.setProfileAvatar(userAvatar);
+    }
 }
 
 LitterScreen.propTypes = {
@@ -190,6 +194,8 @@ LitterScreen.propTypes = {
     skoshSubmit: PropTypes.func,
     skoshErrorMessage: PropTypes.string,
     skoshAvatars: PropTypes.array,
+    skoshProfile: PropTypes.func,
+    setProfileAvatar: PropTypes.func,
 }
 
 const mapStateToProps = (state) => ({
@@ -200,7 +206,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     skoshSubmit: (skoshData) => dispatch(SkoshActions.skoshSubmit(skoshData)),
-    skoshImage: (uri) => dispatch(SkoshActions.skoshImage(uri))    
+    skoshImage: (uri) => dispatch(SkoshActions.skoshImage(uri)),   
+    skoshProfile: (userId) => dispatch(SkoshActions.skoshProfile(userId)),
+    setProfileAvatar: (userAvatar) => dispatch(SkoshActions.setProfileAvatar(userAvatar)),
 })
   
 export default connect(
