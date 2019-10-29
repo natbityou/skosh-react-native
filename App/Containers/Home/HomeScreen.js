@@ -98,6 +98,10 @@ class HomeScreen extends React.Component {
             </View>
           )
         }}/>
+          <TouchableOpacity style={styles.logoutButton}
+            onPress={ () => this.props.navigation.navigate('Login')}>
+            <Text style={styles.registerText}>Logout</Text> 
+          </TouchableOpacity>
         </ScrollView>
       </View>
     );

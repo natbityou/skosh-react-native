@@ -7,6 +7,7 @@ container:{
 },
 Text: {
     fontSize:30,
+
     textAlign: "center",
     fontWeight: "bold",
     paddingTop: 5,
@@ -97,6 +98,12 @@ socialBarButton:{
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+},
+logoutButton: {
+    alignSelf:'center',
+    fontSize: 40,
+    paddingTop: 40,
+    paddingBottom: 40,
 }
 });   
 
