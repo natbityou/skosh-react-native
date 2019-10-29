@@ -43,8 +43,8 @@ class ProfileScreen extends React.Component {
                     />
                     <View style={styles.cardHeader}>
                         <View>
-                            <Text style={styles.title}>{item.caption}</Text>
-                            <Text style={styles.title}>{item.createdAt}</Text>
+                          <Text style={styles.date}>{item.createdAt}</Text>
+                          <Text style={styles.caption}>{item.caption}</Text>
                         </View>
                     </View>
                 </View>          

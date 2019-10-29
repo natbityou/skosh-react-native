@@ -2,9 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     avatar:{
-        height: 80,
-        width: 80,
+        height: 100,
+        width: 100,
         borderRadius:100,
+        marginTop: 20,
+        marginLeft:20,
     },
     
     list: {
@@ -18,18 +20,22 @@ export default StyleSheet.create({
         backgroundColor:"white"
         },
 
-    cardHeader: {
+    cardHeader:{
         paddingVertical: 10,
         paddingHorizontal: 16,
         borderTopLeftRadius: 1,
         borderTopRightRadius: 1,
         flexDirection: 'row',
     },
-
     cardImage:{
         flex: 1,
-        height: 175,
+        height: 200,
         width: null,
     },
-
+    date:{
+        textAlign:'right',
+    },
+    caption:{
+        fontSize: 20,
+    },
 })
