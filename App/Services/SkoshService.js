@@ -36,6 +36,10 @@ function getSkoshTypes(token) {
 
 function skoshSubmit(token, data) {
   console.log(data);
+  if (!data.skoshType || !data.caption || !data.skoshPhoto){
+    console.log("Error submitting");
+    return null;
+  }
 
   var formData = new FormData();
     formData.append('type', data.skoshType);
@@ -47,7 +51,7 @@ function skoshSubmit(token, data) {
       Authorization: 'Bearer ' + token
     }
   };
-  
+
   return apiClient.post('/skosh', formData, axoisConfig).then((response) => {
       if (in200s(response.status)) {
         console.log("woohoo");
@@ -59,6 +63,7 @@ function skoshSubmit(token, data) {
       console.log(response.data);
 
       return null;
+
   }).catch((error) => {
     if (error.response) {
       console.log(error.response);

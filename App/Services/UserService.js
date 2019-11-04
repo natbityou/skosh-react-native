@@ -46,6 +46,9 @@ function fetchUser() {
 
 function registerUser(data) {
   console.log(data);
+  if(!data.email || !data.username || !data.password || !data.avatar) {
+  return null
+  }
 
   var formData = new FormData();
     formData.append('email', data.email);
