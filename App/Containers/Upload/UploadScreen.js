@@ -5,6 +5,8 @@ import styles from '../Shared/SkoshScreenStyle';
 import SkoshActions from 'App/Stores/Skosh/Actions';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import { Images } from 'App/Theme';
+import Icon from 'react-native-vector-icons/FontAwesome'; 'react-native-vector-icons/FontAwesome5';
 
 class UploadScreen extends React.Component {
     constructor(props) {
@@ -44,23 +46,23 @@ class UploadScreen extends React.Component {
             <View>
                 <ScrollView>
                     <TouchableOpacity style={styles.cameraButton}
-                        onPress={() => {
-                            this._loadCameraRoll();
-                            }}>
-                            <Image style={styles.skoshPhoto} 
-                            source= { this.props.userSkoshPhoto
-                            ? ({uri: this.props.userSkoshPhoto})
-                            : ({uri: "https://bootdey.com/img/Content/avatar/avatar1.png"})
-                        }/>
-                    </TouchableOpacity> 
-                        <TextInput
-                            placeholder = "Write a caption..." 
-                            placeholderColor ="c4c3cb"
-                            style = {styles.uploadCaptionInput}
-                            multiline={true}
-                            autoCapitalize = 'none'
-                            ref={(input) => this.captionInput = input}
+                        onPress={() => { this._loadCameraRoll(); }}
+                    >
+                        <Image
+                            style={styles.skoshPhoto} 
+                            source={ this.props.userSkoshPhoto
+                                        ? { uri: this.props.userSkoshPhoto }
+                                        : Images.upload }   
                         />
+                    </TouchableOpacity> 
+                    <TextInput
+                        placeholder = "Write a caption..." 
+                        placeholderColor ="c4c3cb"
+                        style = {styles.uploadCaptionInput}
+                        multiline={true}
+                        autoCapitalize = 'none'
+                        ref={(input) => this.captionInput = input}
+                    />
                     <Button
                         title="Sumbit Skosh"
                         onPress={ () => this._skoshSubmit()}>
@@ -76,7 +78,14 @@ class UploadScreen extends React.Component {
                     }}
                 >
                     <View style={{flex: 1, backgroundColor: 'white'}}>
-                        <ScrollView style={styles.camerarollContainer}>
+                        <ScrollView style={styles.cameraRollContainer}>
+                           <TouchableOpacity style={styles.socialBarButton}
+                                onPress={() => {
+                                    this._closeCameraRoll();
+                                }}
+                            >
+                                <Icon style={styles.closeIcon} name='times' size={30} color='#f77754' />
+                            </TouchableOpacity>
                             <View style={styles.imageGrid}>
                                 {this.state.photos.map((p, i) => {
                                     return (
@@ -86,12 +95,6 @@ class UploadScreen extends React.Component {
                                     );
                                 })}
                             </View>
-                            <TouchableHighlight
-                                onPress={() => {
-                                this._closeCameraRoll();
-                                }}>
-                                <Text>Cancel</Text>
-                            </TouchableHighlight>
                         </ScrollView>
                     </View>
                 </Modal>
@@ -100,11 +103,10 @@ class UploadScreen extends React.Component {
     }
     _skoshSubmit() {
         const skoshData = {
-            'skoshType': 1,
+            'skoshType': this.props.uploadSkoshType,
             'skoshPhoto': this.props.userSkoshPhoto,
             'caption': this.captionInput._lastNativeText,
         }
-
         this.props.skoshSubmit(skoshData);
     }
 }
@@ -112,13 +114,11 @@ class UploadScreen extends React.Component {
 UploadScreen.propTypes = {
     skoshImage: PropTypes.func, 
     skoshSubmit: PropTypes.func,
-    skoshErrorMessage: PropTypes.string,
-
 }
 
 const mapStateToProps = (state) => ({
+    uploadSkoshType: state.skosh.uploadType,
     userSkoshPhoto : state.skosh.skoshPhoto,
-    skoshErrorMessage: state.skosh.skoshErrorMessage,
 })
 
 const mapDispatchToProps = (dispatch) => ({

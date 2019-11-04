@@ -4,6 +4,6 @@
 
 export default {
   logo: require('App/Assets/Images/Logo.png'),
-  trash: require('App/Assets/Images/trash.jpg')
-  
+  trash: require('App/Assets/Images/trash.jpg'),
+  upload: require('App/Assets/Images/Upload.png'),
 }
