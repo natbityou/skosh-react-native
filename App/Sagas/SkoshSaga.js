@@ -1,6 +1,7 @@
 import { put, call, select } from 'redux-saga/effects'
 import SkoshActions from 'App/Stores/Skosh/Actions'
 import { skoshService } from 'App/Services/SkoshService'
+import  HomeActions from 'App/Stores/Home/Actions'
 import NavigationService from 'App/Services/NavigationService'
 
 /**
@@ -25,7 +26,7 @@ export function* getSkoshAvatars(action) {
     else if (action.skoshTypeId == 3) {
       NavigationService.navigate('Donate')
     }
-  } else {
+  } else {console.log("not working");
       yield put(
           SkoshActions.viewSkoshFailure('Unable to view skosh avatars')
       )
@@ -35,18 +36,22 @@ export function* getSkoshAvatars(action) {
 export function* skoshSubmit(action) {
   // Send informations to API
   const token = yield select(getToken);
+  console.log("pre-call");
   const submitResponse = yield call(skoshService.skoshSubmit, token, action.data)
-  
-  console.log(submitResponse);
+  const skoshTypeResponse = yield call(skoshService.getSkoshTypes, token);
 
-  if (submitResponse) {
-    yield put(SkoshActions.skoshSuccess(submitResponse))
-    NavigationService.goBack()
-  } else {
-    yield put(
-      SkoshActions.skoshFailure('Unable to submit skosh')
-    )
+  console.log(submitResponse);
+  console.log("bye");
+
+
+  if (!submitResponse) {
+    return put(SkoshActions.skoshFailure('Unable to submit skosh'));
   }
+    
+  yield put(SkoshActions.skoshSuccess(submitResponse))
+  // Load Succeeded! Populate state with Skosh Homepage data
+  yield put(HomeActions.refreshPage(skoshTypeResponse.data));
+  NavigationService.navigate('Home')
 }
 
 export function* getSkoshProfile(action) {
