@@ -36,16 +36,17 @@ class LitterScreen extends React.Component {
                         
                         renderItem={(flatListItem) => {
                             const item = flatListItem.item;
-                                return (
-                                    <View style={ styles.card }>
-                                        <TouchableOpacity onPress={() => { this._renderSkoshProfile(item.user_id, item.avatar) }}>
-                                            <Image 
-                                            style={ styles.avatar }
-                                            source={{ uri: 'data:image/png;base64,' + item.avatar }}
-                                            />
-                                        </TouchableOpacity>
-                                    </View>
-                                )
+                            console.log(item);
+                            return (
+                                <View style={ styles.card }>
+                                    <TouchableOpacity onPress={() => { this._renderSkoshProfile(item) }}>
+                                        <Image 
+                                        style={ styles.avatar }
+                                        source={{ uri: 'data:image/png;base64,' + item.avatar }}
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                            )
                         }}
                     />
                 </ScrollView>    
@@ -57,19 +58,9 @@ class LitterScreen extends React.Component {
            </View>
         );
     }
-    _skoshSubmit() {
-        const skoshData = {
-            'skoshType': 1,
-            'skoshPhoto': this.props.userSkoshPhoto,
-            'caption': this.captionInput._lastNativeText,
-        }
-
-        this.props.skoshSubmit(skoshData);
-    }
-
-    _renderSkoshProfile(userId, userAvatar) { 
-        this.props.skoshProfile(userId);
-        this.props.setProfileAvatar(userAvatar);
+    _renderSkoshProfile(user) { 
+        this.props.skoshProfile(user.user_id);
+        this.props.setProfileData(user);
     }
 }
 
@@ -77,7 +68,7 @@ LitterScreen.propTypes = {
     userSkoshPhoto: PropTypes.string,
     skoshAvatars: PropTypes.array,
     skoshProfile: PropTypes.func,
-    setProfileAvatar: PropTypes.func,
+    setProfileData: PropTypes.func,
 }
 
 const mapStateToProps = (state) => ({
@@ -87,7 +78,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     skoshProfile: (userId) => dispatch(SkoshActions.skoshProfile(userId)),
-    setProfileAvatar: (userAvatar) => dispatch(SkoshActions.setProfileAvatar(userAvatar)),
+    setProfileData: (user) => dispatch(SkoshActions.setProfileData(user)),
 })
   
 export default connect(

@@ -41,8 +41,10 @@ const { Types, Creators } = createActions({
   skoshProfileSuccess: ['userSkoshes'],
   // An error occurred getting user skoshes
   skoshProfileFailure: ['errorMessage'],
-  // set user avatar for profile page
-  setProfileAvatar: ['userAvatar'],
+  // set user data for profile page
+  setProfileData: ['user'],
+  //set user skosh type for upload page
+  uploadSkoshType:['uploadType'],
 })
 
 export const SkoshTypes = Types

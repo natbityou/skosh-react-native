@@ -12,11 +12,10 @@ export const initData = (state) => ({
   ...state,
   user: {},
   skoshErrorMessage: null,
-  skoshPhoto: null,
 })
 export const skoshImage = (state, { imageUri }) => ({
   ...state,
-  skoshPhoto: imageUri,
+  skoshImage: imageUri,
 })
 
 export const skoshSuccess = (state) => ({
@@ -50,9 +49,15 @@ export const skoshProfileFailure = (state, { errorMessage }) => ({
   skoshErrorMessage: errorMessage,
 })
 
-export const setProfileAvatar = (state, { userAvatar }) => ({
+export const setProfileData = (state, { user }) => ({
   ...state,
-  profileAvatar: userAvatar,
+  profileAvatar: user.avatar,
+  profileUsername: user.username,
+})
+
+export const uploadSkoshType = (state, {uploadType}) => ({
+  ...state,
+  uploadType: uploadType
 })
 
 
@@ -70,5 +75,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [SkoshTypes.SKOSH_PROFILE_FAILURE]: skoshProfileFailure,
   [SkoshTypes.VIEW_SKOSH_FAILURE]: viewSkoshFailure,
   [SkoshTypes.VIEW_SKOSH_SUCCESS]: viewSkoshSuccess,
-  [SkoshTypes.SET_PROFILE_AVATAR]: setProfileAvatar,
+  [SkoshTypes.SET_PROFILE_DATA]: setProfileData,
+  [SkoshTypes.UPLOAD_SKOSH_TYPE]: uploadSkoshType,
 })

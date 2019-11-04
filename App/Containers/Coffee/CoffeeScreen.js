@@ -4,6 +4,8 @@ import styles from '../Shared/SkoshScreenStyle';
 import Icon from 'react-native-vector-icons/Feather';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import SkoshActions from 'App/Stores/Skosh/Actions';
+
 
 class CoffeeScreen extends React.Component {
     render() {
@@ -52,16 +54,7 @@ class CoffeeScreen extends React.Component {
                         </TouchableOpacity>
             </View>
         );
-    }
-    _skoshSubmit() {
-        const skoshData = {
-            'skoshType': 1,
-            'skoshPhoto': this.props.userSkoshPhoto,
-            'caption': this.captionInput._lastNativeText,
-        }
-        this.props.skoshSubmit(skoshData);
-    }
-       
+    }     
     _renderSkoshProfile(userId, userAvatar) { 
         this.props.skoshProfile(userId);
         this.props.setProfileAvatar(userAvatar);

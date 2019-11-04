@@ -6,7 +6,8 @@ export default StyleSheet.create({
         width: 100,
         borderRadius:100,
         marginTop: 20,
-        marginLeft:20,
+        marginLeft:55,
+        marginBottom: 20,
     },
     
     list: {
@@ -14,8 +15,6 @@ export default StyleSheet.create({
     },
 
     card:{
-        paddingTop: 20,
-        borderRadius:25,
         overflow: 'hidden',
         backgroundColor:"white"
         },
@@ -30,12 +29,21 @@ export default StyleSheet.create({
     cardImage:{
         flex: 1,
         height: 200,
-        width: null,
+        width: 352,
+        alignSelf: 'center',
     },
     date:{
         textAlign:'right',
     },
     caption:{
         fontSize: 20,
+    },
+    headerData:{
+        flexDirection: 'row',
+    },
+    username:{
+        marginTop: 50,
+        marginLeft: 40,
+        fontSize: 25,
     },
 })

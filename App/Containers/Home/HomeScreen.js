@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import { Button, FlatList, Image, ScrollView, Text, TouchableOpacity, View, } from 'react-native';
 import styles from './HomeScreenStyle'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
@@ -20,7 +13,7 @@ class HomeScreen extends React.Component {
     },
     headerTintColor: '#fff'
   }
-
+  
   constructor(props) {
     super(props);
       this.state = {
@@ -48,66 +41,68 @@ class HomeScreen extends React.Component {
     }
 
   render() {
-  return (
-  <View style={styles.container}> 
-      <Text style={styles.Text}>Let the acts of kindness begin!</Text>
-      <ScrollView contentContainerStyle={{paddingBottom: 100}}>
-      <FlatList style={styles.list}
-        data={this.state.data}
+    return (
+      <View style={styles.container}> 
+        <Text style={styles.Text}>Let the acts of kindness begin!</Text>
+        <ScrollView contentContainerStyle={{paddingBottom: 100}}>
+          <FlatList style={styles.list}
+            data={this.state.data}
 
-        keyExtractor= {(item) => {
-          return item.id + "";
-        }}
+            keyExtractor= {(item) => {
+              return item.id + "";
+            }}
 
-        ItemSeparatorComponent={() => {
-          return (
-            <View style={styles.separator}/>
-          )
-        }}
+            ItemSeparatorComponent={() => {
+              return (
+                <View style={styles.separator}/>
+              )
+            }}
 
-        renderItem={(post) => {
-        const item = post.item;
-          return (
-            <View style={styles.card}>
-              <Image style={styles.cardImage} source={{uri:item.image}}/>
-              <View style={styles.cardHeader}>
-                <View>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.description}>{item.description}</Text>
-                </View>
-              </View>
-              <View style={styles.cardFooter}>
-                <View style={styles.socialBarContainer}>
-                  <View style={styles.socialBarSection}>
-                    <TouchableOpacity onPress={() => console.log('puff')} style={styles.socialBarButton}>
-                    <Icon style={styles.handicon} name="handshake-o" size={30} color="#f77754" />
-                      <Text style={styles.socialBarLabel}>{this.props.skoshTypes[item.id-1].total}</Text>
-                    </TouchableOpacity>
+            renderItem={(post) => {
+              const item = post.item;
+                return (
+                  <View style={styles.card}>
+                    <Image style={styles.cardImage} source={{uri:item.image}}/>
+                    <View style={styles.cardHeader}>
+                      <View>
+                        <Text style={styles.title}>{item.title}</Text>
+                        <Text style={styles.description}>{item.description}</Text>
+                      </View>
+                    </View>
+                    <View style={styles.cardFooter}>
+                      <View style={styles.socialBarContainer}>
+                        <View style={styles.socialBarSection}>
+                          <TouchableOpacity onPress={() => console.log('puff')} style={styles.socialBarButton}>
+                            <Icon style={styles.handicon} name="handshake-o" size={30} color="#f77754" />
+                            <Text style={styles.socialBarLabel}>{this.props.skoshTypes[item.id-1].total}</Text>
+                          </TouchableOpacity>
+                        </View>
+                        <View style={styles.socialBarSection}>
+                          <TouchableOpacity style={styles.socialBarButton}
+                            onPress={() => {
+                              this._viewSkosh(item.id)
+                            }}
+                          >
+                            <Icon style={styles.arrowicon} name="arrow-right" size={30} color="#f77754" />
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                    </View>
                   </View>
-                  <View style={styles.socialBarSection}>
-                    <TouchableOpacity style={styles.socialBarButton}
-                      onPress={() => {
-                        this._viewSkosh(item.id)
-                      }}
-                    >
-                      <Icon style={styles.arrowicon} name="arrow-right" size={30} color="#f77754" />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-            </View>
-          )
-        }}/>
-          <TouchableOpacity style={styles.logoutButton}
+                )
+            }}
+          />
+          <Button
+            title="Logout"
             onPress={ () => this.props.navigation.navigate('Login')}>
-            <Text style={styles.registerText}>Logout</Text> 
-          </TouchableOpacity>
+          </Button>
         </ScrollView>
       </View>
     );
   }
   _viewSkosh(skoshTypeId) {
     this.props.viewSkosh(skoshTypeId);
+    this.props.uploadSkoshType(skoshTypeId);
   }
 }
 
@@ -115,16 +110,17 @@ HomeScreen.propTypes = {
   user: PropTypes.object,
   skoshTypes: PropTypes.array,
   viewSkosh: PropTypes.func,
+  uploadSkoshType: PropTypes.func,
 }
 
 const mapStateToProps = (state) => ({
   user: state.login.user,
   skoshTypes: state.home.skoshTypes,
-  
 })
 
 const mapDispatchToProps = (dispatch) => ({
   viewSkosh: (skoshTypeId) => dispatch(SkoshActions.viewSkosh(skoshTypeId)),
+  uploadSkoshType: (skoshTypeId) => dispatch(SkoshActions.uploadSkoshType(skoshTypeId)),
 })
   
 export default connect(

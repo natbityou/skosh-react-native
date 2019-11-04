@@ -4,6 +4,8 @@ import styles from '../Shared/SkoshScreenStyle';
 import Icon from 'react-native-vector-icons/Feather';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import SkoshActions from 'App/Stores/Skosh/Actions';
+
 
 class DonateScreen extends React.Component {
      render() {
@@ -34,7 +36,7 @@ class DonateScreen extends React.Component {
     
                                 return (
                                     <View style={ styles.card }>
-                                        <TouchableOpacity onPress={() => { this._renderSkoshProfile(item.user_id, item.avatar) }}>
+                                        <TouchableOpacity onPress={() => { this._renderSkoshProfile(item) }}>
                                             <Image 
                                                 style={ styles.avatar }
                                                 source={{ uri: 'data:image/png;base64,' + item.avatar }}
@@ -52,18 +54,9 @@ class DonateScreen extends React.Component {
                </View>
             );
         }
-    _skoshSubmit() {
-        const skoshData = {
-            'skoshType': 1,
-            'skoshPhoto': this.props.userSkoshPhoto,
-            'caption': this.captionInput._lastNativeText,
-        }
-        this.props.skoshSubmit(skoshData);
-    }
-
-    _renderSkoshProfile(userId, userAvatar) { 
-        this.props.skoshProfile(userId);
-        this.props.setProfileAvatar(userAvatar);
+    _renderSkoshProfile(user) { 
+        this.props.skoshProfile(user.user_id);
+        this.props.setProfileData(user);
     }
 }
 
@@ -71,7 +64,7 @@ DonateScreen.propTypes = {
     userSkoshPhoto: PropTypes.string,
     skoshAvatars: PropTypes.array,
     skoshProfile: PropTypes.func,
-    setProfileAvatar: PropTypes.func,
+    setProfileData: PropTypes.func,
 }
 
 const mapStateToProps = (state) => ({
@@ -79,9 +72,9 @@ const mapStateToProps = (state) => ({
     skoshAvatars: state.skosh.skoshAvatars,
 })
 
-const mapDispatchToProps = (dispatch) => ({  
+const mapDispatchToProps = (dispatch) => ({
     skoshProfile: (userId) => dispatch(SkoshActions.skoshProfile(userId)),
-    setProfileAvatar: (userAvatar) => dispatch(SkoshActions.setProfileAvatar(userAvatar)),
+    setProfileData: (user) => dispatch(SkoshActions.setProfileData(user)),
 })
   
 export default connect(

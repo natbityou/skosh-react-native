@@ -11,8 +11,6 @@ import { loginUser } from './LoginSaga'
 import { skoshSubmit } from './SkoshSaga'
 import { getSkoshAvatars } from './SkoshSaga'
 import { getSkoshProfile } from './SkoshSaga'
-import { getProfileAvatar } from './SkoshSaga'
-
 
 
 

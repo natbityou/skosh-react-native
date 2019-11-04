@@ -8,17 +8,14 @@ class ProfileScreen extends React.Component {
   render(){
     return(
       <View style={styles.container}> 
-        <TouchableOpacity
-          onPress={() => {
-            console.log(this.props.userSkoshes);
-          }}
-        >
-          <Image 
+        <View style={styles.headerData}>
+          <Image
             style={ styles.avatar }
             source={{ uri: 'data:image/png;base64,' + this.props.profileAvatar }}
           />
-        </TouchableOpacity>
-        <ScrollView contentContainerStyle={{paddingBottom: 100}}>                
+          <Text style={styles.username}>{ this.props.profileUsername }</Text>
+        </View>
+        <ScrollView contentContainerStyle={{paddingBottom: 200}}>                
           <FlatList 
             style={styles.list}
             data={this.props.userSkoshes}
@@ -59,11 +56,13 @@ class ProfileScreen extends React.Component {
 
 ProfileScreen.propTypes = {
   profileAvatar: PropTypes.string,
+  profileUsername: PropTypes.string,
   userSkoshes: PropTypes.array,
 }
 
 const mapStateToProps = (state) => ({
   profileAvatar: state.skosh.profileAvatar,
+  profileUsername: state.skosh.profileUsername,
   userSkoshes: state.skosh.skoshProfileInfo,
 })
 
