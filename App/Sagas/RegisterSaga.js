@@ -12,12 +12,10 @@ export function* registerUser(action) {
   const user = yield call(userService.registerUser, action.data)
   console.log(user)
 
-  if (user) {
-    yield put(RegisterActions.registerSuccess(user))
-    NavigationService.navigate('Login')
-  } else {
-    yield put(
-      RegisterActions.registerFailure('Unable to register')
-    )
+  if (!user) {
+    return yield put(RegisterActions.registerFailure('Unable to register'))
   }
+
+  yield put(RegisterActions.registerSuccess(user))
+  NavigationService.navigate('Login')
 }

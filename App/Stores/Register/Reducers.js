@@ -33,7 +33,6 @@ export const registerImage = (state, { imageUri }) => ({
 })
 
 
-
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */

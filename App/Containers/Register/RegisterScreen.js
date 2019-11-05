@@ -1,16 +1,15 @@
 import React from 'react'
-import { TouchableOpacity, Alert, TouchableHighlight, Modal, ScrollView, Keyboard, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, View, TextInput,} from 'react-native';
-import styles from './RegisterScreenStyle'
+import { Alert, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, View,} from 'react-native'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import RegisterActions from 'App/Stores/Register/Actions'
-import CameraRoll from "@react-native-community/cameraroll";
-
+import styles from './RegisterScreenStyle'
+import CameraRoll from '@react-native-community/cameraroll'
+import { Images } from 'App/Theme'
 
 
 class RegisterScreen extends React.Component {
-
-        constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
@@ -18,6 +17,79 @@ class RegisterScreen extends React.Component {
         };
     }
 
+    render() {
+        return (
+            <KeyboardAvoidingView behavior="padding">
+                <ImageBackground source={Images.background} style={styles.backgroundImage}>
+                    <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        Alert.alert('Modal has been closed.');
+                    }}
+                    >
+                        <View style={{flex: 1, backgroundColor: 'white'}}>
+                            <TouchableHighlight style={styles.closeButton}
+                                onPress={() => { this._closeCameraRoll(); }}>
+                                <Text style={styles.closeButton}>Cancel</Text>
+                            </TouchableHighlight>
+                            <ScrollView style={styles.camerarollContainer}>
+                                <View style={styles.imageGrid}>
+                                    {this.state.photos.map((p, i) => {
+                                        return (
+                                            <TouchableHighlight onPress={() => { this._renderRegisterImage(p.node.image.uri); this._closeCameraRoll(); }}>
+                                                <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />      
+                                            </TouchableHighlight>
+                                        );
+                                    })}
+                                </View>  
+                            </ScrollView>
+                        </View>
+                    </Modal>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View style={styles.registerScreenContainer}>                                
+                                <TouchableOpacity style={styles.cameraButton}
+                                    onPress={() => { this._loadCameraRoll(); }}>
+                                    <Image style={styles.avatar} source=
+                                        { this.props.userAvatar
+                                            ? ({uri: this.props.userAvatar})
+                                            : Images.avatar
+                                        }
+                                    />
+                                    <Text style={styles.uploadText}>Select a Profile Picture</Text>
+                                </TouchableOpacity> 
+                                <View style={styles.registerFormView}>
+                                <TextInput placeholder = 'username' placeholderTextColor = 'white' style = {styles.loginFormInput}
+                                    autoCapitalize = 'none'
+                                    returnKeyType = 'next'
+                                    ref={(input) => this.usernameInput = input}
+                                    onSubmitEditing={() => this.emailInput.focus()}
+                                />
+                                <TextInput placeholder = 'email' placeholderTextColor = 'white' style = {styles.loginFormInput}
+                                    autoCapitalize = 'none'
+                                    returnKeyType = 'next'
+                                    ref={(input) => this.emailInput = input}
+                                    onSubmitEditing={() => this.passwordInput.focus()}
+                                />
+                                <TextInput placeholder = 'password' placeholderTextColor ='white' style = {styles.loginFormInput}
+                                    returnKeyType= 'go'
+                                    secureTextEntry 
+                                    ref={(input) => this.passwordInput = input}
+                                    />                          
+                                <TouchableOpacity
+                                    onPress={ () => this._register()}>
+                                    <Text style={styles.registerText}>Register</Text> 
+                                </TouchableOpacity>
+                                
+                                {/* {this._renderRegisterErrorMessage()} */}
+                            </View>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </ImageBackground>
+            </KeyboardAvoidingView>
+        );
+    }
     _loadCameraRoll = () => {
         CameraRoll.getPhotos({
                 first: 20,
@@ -29,7 +101,6 @@ class RegisterScreen extends React.Component {
             .catch((err) => {
                 //Error Loading Images
         });
-
         this.setState({modalVisible: true});
     };
 
@@ -41,88 +112,6 @@ class RegisterScreen extends React.Component {
         // console.log('Selected image: ', uri)
         this.props.registerImage(imageUri);
     }
-        
-
-    render() {
-        return (
-                <KeyboardAvoidingView style={styles.containerView} behavior="padding">
-                    <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
-                    }}
-                    >
-                        <View style={{flex: 1, backgroundColor: 'white'}}>
-                            <ScrollView style={styles.camerarollContainer}>
-                                <View style={styles.imageGrid}>
-                                    {this.state.photos.map((p, i) => {
-                                        return (
-                                            <TouchableHighlight onPress={() => {this._renderRegisterImage(p.node.image.uri); this._closeCameraRoll();}}>
-                                                <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />      
-                                            </TouchableHighlight>
-                                        );
-                                    })}
-                                </View>
-                                    <TouchableHighlight
-                                        onPress={() => {
-                                        this._closeCameraRoll();
-                                        }}>
-                                        <Text>Cancel</Text>
-                                    </TouchableHighlight>
-                            </ScrollView>
-                        </View>
-                    </Modal>
-                    <Text style={styles.topText}>A skosh of kindness to make the world a better place </Text>
-                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                        <View style={styles.registerScreenContainer}>
-                            <View style={styles.registerFormView}>
-                                <TouchableOpacity style={styles.cameraButton}
-                                    onPress={() => {
-                                        this._loadCameraRoll();
-                                    }}>
-                                    <Image style={styles.avatar} source=
-                                        { this.props.userAvatar
-                                            ? ({uri: this.props.userAvatar})
-                                            : ({uri: "https://bootdey.com/img/Content/avatar/avatar1.png"})
-                                        }
-                                    />
-                                    <Text style={styles.uploadText}>Select a Profile Picture</Text>
-                                </TouchableOpacity> 
-                                <TextInput placeholder = "username" placeholderColor ="c4c3cb" style = {styles.loginFormInput}
-                                    autoCapitalize = 'none'
-                                    returnKeyType = "next"
-                                    ref={(input) => this.usernameInput = input}
-                                    onSubmitEditing={() => this.emailInput.focus()}
-                                />
-                                <TextInput placeholder = "email" placeholderColor ="c4c3cb" style = {styles.loginFormInput}
-                                    autoCapitalize = 'none'
-                                    returnKeyType = "next"
-                                    ref={(input) => this.emailInput = input}
-                                    onSubmitEditing={() => this.passwordInput.focus()}
-                                />
-                                <TextInput placeholder = "password" placeholderColor ="c4c3cb" style = {styles.loginFormInput}
-                                    returnKeyType= "go"
-                                    secureTextEntry 
-                                    ref={(input) => this.passwordInput = input}
-                                    />                          
-                                <TouchableOpacity
-                                    onPress={ () => this._register()}>
-                                    <Text style={styles.registerText}>Register</Text> 
-                                </TouchableOpacity>
-                                {this._renderRegisterErrorMessage()}
-                            </View>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </KeyboardAvoidingView>
-        );
-    }
-    _renderRegisterErrorMessage() {
-        if (this.props.registerErrorMessage) {
-            return <Text style={styles.error}>{this.props.registerErrorMessage}</Text>;
-        }
-    }
     _register() {
         const registerData = {
             'avatar': this.props.userAvatar,
@@ -130,8 +119,22 @@ class RegisterScreen extends React.Component {
             'email': this.emailInput._lastNativeText,
             'password': this.passwordInput._lastNativeText,
         }
-
         this.props.register(registerData);
+
+    }
+
+    _renderRegisterErrorMessage() {
+         if (this.props.registerErrorMessage) {
+            console.log('hello')
+            return Alert.alert(
+                this.props.registerErrorMessage,
+                "",
+                [
+                    { text: 'Try Again', onPress: () => console.log('Try Again Pressed') },
+                ],
+                { cancelable: false },
+            );
+        }
     }
 }
 
