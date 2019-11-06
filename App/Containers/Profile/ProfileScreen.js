@@ -1,6 +1,7 @@
 import React from 'react'
-import { TouchableOpacity, Image, Text, FlatList, View, ScrollView, } from 'react-native';
+import { Image, Text, FlatList, View, ScrollView, } from 'react-native';
 import styles from './ProfileScreenStyle';
+import Icon from 'react-native-vector-icons/FontAwesome'; 'react-native-vector-icons/Feather'
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -40,7 +41,10 @@ class ProfileScreen extends React.Component {
                     />
                     <View style={styles.cardHeader}>
                         <View>
-                          <Text style={styles.date}>{item.createdAt}</Text>
+                          <View style={styles.dateContainer} >
+                            <Icon style={styles.calendarIcon} name= 'calendar' size={18} />
+                            <Text style={styles.date}>{item.createdAt}</Text>
+                          </View>
                           <Text style={styles.caption}>{item.caption}</Text>
                         </View>
                     </View>
