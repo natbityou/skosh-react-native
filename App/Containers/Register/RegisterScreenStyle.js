@@ -76,6 +76,7 @@ export default StyleSheet.create({
         paddingTop: 10,
         marginTop: 20,
         marginLeft: 5,
+        fontSize: 20,
     },
     camerarollContainer: {
         flex: 1,
@@ -104,5 +105,5 @@ export default StyleSheet.create({
         borderRadius:100,
         marginTop:5,
         marginRight:5,
-      },
+    },
 })

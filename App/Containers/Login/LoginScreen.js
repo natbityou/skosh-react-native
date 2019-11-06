@@ -1,17 +1,16 @@
 import React from 'react'
-import { ImageBackground, Alert, TouchableOpacity, Text, ActivityIndicator, Image, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, View, TextInput, } from 'react-native';
-import styles from './LoginScreenStyle';
+import { ActivityIndicator, Alert, Image, ImageBackground, Keyboard, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, View,} from 'react-native'
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux'
 import LoginActions from 'App/Stores/Login/Actions'
+import styles from './LoginScreenStyle';
 import { Images } from 'App/Theme'
-
 
 
 class LoginScreen extends React.Component {
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding">
+            <KeyboardAvoidingView style={styles.container} behavior="padding" enable>
                 <ImageBackground source={Images.background} style={styles.backgroundImage}>
                     {this.props.loginIsLoading ? (
                         <View style={{ marginTop: 250 }}>
@@ -19,6 +18,7 @@ class LoginScreen extends React.Component {
                         </View>
                      ) : (
                         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                            <ScrollView> 
                             <View style={styles.loginScreenContainer}>
                                 <View style={styles.logoContainer}>
                                     <Image style={styles.logo} source={Images.logo} resizeMode={'contain'} />
@@ -39,6 +39,7 @@ class LoginScreen extends React.Component {
                                         onPress={ () => this._login()}>
                                         <Text style={styles.loginText}>Log in</Text> 
                                     </TouchableOpacity>
+                                    {this._renderErrorMessage()}
                                     <View style={styles.registerContainer}>
                                         <View style={styles.row}>
                                             <Text style={styles.text}>Don't have an account?</Text>     
@@ -46,11 +47,11 @@ class LoginScreen extends React.Component {
                                                 onPress={ () => this.props.navigation.navigate('Register')}>
                                                 <Text style={styles.registerText}>Register.</Text> 
                                             </TouchableOpacity>
-                                            {this._renderErrorMessage()}
                                         </View>
                                     </View>
                                 </View>
-                            </View>
+                                </View>
+                            </ScrollView>
                         </TouchableWithoutFeedback>
                     )}   
                 </ImageBackground>
@@ -60,7 +61,7 @@ class LoginScreen extends React.Component {
     _renderErrorMessage() {
         if (this.props.loginErrorMessage) {
             return  Alert.alert(
-                'Invalid email or password',
+                this.props.loginErrorMessage,
                 '',
                 [
                   {text: 'Try Again', onPress: () => console.log('OK Pressed')},
@@ -68,7 +69,6 @@ class LoginScreen extends React.Component {
                 {cancelable: false},
               );     
         }
-        {this.props.loginErrorMessage};
     }
 
     _login() {

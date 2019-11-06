@@ -19,7 +19,7 @@ class RegisterScreen extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding">
+            <KeyboardAvoidingView style = {{ flex: 1 }} behavior={"padding"}>
                 <ImageBackground source={Images.background} style={styles.backgroundImage}>
                     <Modal
                     animationType="slide"
@@ -48,7 +48,7 @@ class RegisterScreen extends React.Component {
                         </View>
                     </Modal>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                        <View style={styles.registerScreenContainer}>                                
+                        <ScrollView style={styles.registerScreenContainer}>                                  
                                 <TouchableOpacity style={styles.cameraButton}
                                     onPress={() => { this._loadCameraRoll(); }}>
                                     <Image style={styles.avatar} source=
@@ -58,6 +58,7 @@ class RegisterScreen extends React.Component {
                                         }
                                     />
                                     <Text style={styles.uploadText}>Select a Profile Picture</Text>
+                                
                                 </TouchableOpacity> 
                                 <View style={styles.registerFormView}>
                                 <TextInput placeholder = 'username' placeholderTextColor = 'white' style = {styles.loginFormInput}
@@ -84,7 +85,7 @@ class RegisterScreen extends React.Component {
                                 
                                 {/* {this._renderRegisterErrorMessage()} */}
                             </View>
-                        </View>
+                        </ScrollView>
                     </TouchableWithoutFeedback>
                 </ImageBackground>
             </KeyboardAvoidingView>

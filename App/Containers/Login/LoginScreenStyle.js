@@ -11,28 +11,16 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center'
     }, 
-    logoContainer: {
-        flex: 1,
-        alignContent:'center',
-        justifyContent: 'center'
-    },
     logo: {
-       marginTop: 200,
+       width: 400,
+       height: 400,
+       alignSelf: 'center',
        marginLeft: 15,
-       width: 350,
-       height: 350,
-    },
-    logoText: {
-        fontSize: 40,
-        fontWeight: "800",
-        marginTop: 250,
-        marginBottom: 30,
-        textAlign: 'center',    
-        color: 'white',
+       marginBottom: -100,
+       marginTop: 100,
     },
     loginFormView: {
         flex: 1,
-        marginTop: 0,
     },     
     loginFormInput: {
         height: 43,
@@ -43,7 +31,6 @@ export default StyleSheet.create({
         paddingLeft: 10,
         marginLeft: 15,
         marginRight: 15,
-        marginTop: 5,
         marginBottom: 5,
     },
     loginText: {
