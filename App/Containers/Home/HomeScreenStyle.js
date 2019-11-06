@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    
     container: {
         paddingTop: 30,
     },
@@ -45,6 +46,7 @@ export default StyleSheet.create({
         width: 360,
         alignSelf: 'center',
     },
+
     /******** card components **************/
     title:{
         fontWeight: 'bold',
@@ -98,7 +100,7 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     logoutButton: {
-        fontSize: 25,
+        fontSize: 20,
         height: 45,
         marginTop: 40,
         color: '#fb9224',

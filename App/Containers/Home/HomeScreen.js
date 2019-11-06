@@ -66,16 +66,16 @@ class HomeScreen extends React.Component {
                   <View style={styles.card}>
                     <Image style={styles.cardImage} source={{uri:item.image}}/>
                     <View style={styles.cardHeader}>
+                      <View>
                         <Text style={styles.title}>{item.title}</Text>
                         <Text style={styles.description}>{item.description}</Text>
+                      </View>
                     </View>
                     <View style={styles.cardFooter}>
                       <View style={styles.socialBarContainer}>
                         <View style={styles.socialBarSection}>
-                          <TouchableOpacity onPress={() => console.log('puff')} style={styles.socialBarButton}>
                             <Icon style={styles.handicon} name= 'handshake-o' size={30} color= '#f77754' />
                             <Text style={styles.socialBarLabel}>{this.props.skoshTypes[item.id-1].total}</Text>
-                          </TouchableOpacity>
                         </View>
                         <View style={styles.socialBarSection}>
                           <TouchableOpacity style={styles.socialBarButton} onPress={() => { this._viewSkosh(item.id) }}>
