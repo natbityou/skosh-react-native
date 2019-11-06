@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { genericTypeAnnotation } from '@babel/types';
 
 export default StyleSheet.create({
   
@@ -46,9 +47,12 @@ export default StyleSheet.create({
         color: '#3e64ff',
     },
     cardTitle:{
-        fontSize: 18,
-        textAlign: 'center',
-        paddingTop: 20,
+        fontSize: 20,
+        textAlign: 'left',
+        paddingTop: 30,
+        paddingBottom: 20,
+        paddingLeft:10
+
     },
 });   
 

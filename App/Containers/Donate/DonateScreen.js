@@ -16,7 +16,7 @@ class DonateScreen extends React.Component {
                     There are many families in need of usable items. 
                     There are disaster victims, underprivileged people, 
                     and children in need, and your donations can help.</Text>
-                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
+                <Text style={styles.cardTitle}>People who donated</Text>   
                     <ScrollView style={styles.scroll}>
                         <FlatList 
                             style={styles.list}

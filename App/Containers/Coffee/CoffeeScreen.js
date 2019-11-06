@@ -15,7 +15,7 @@ class CoffeeScreen extends React.Component {
                 <Text style={styles. description}>Let's make someone's day by paying for their coffee
                                             Kindness is contagious and something we should all want to 
                                             pass on and spread to one another.</Text>
-                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
+                <Text style={styles.cardTitle}>People who bought a stranger coffee</Text>   
                     <ScrollView style={styles.scroll}>
                         <FlatList 
                             style={styles.list}

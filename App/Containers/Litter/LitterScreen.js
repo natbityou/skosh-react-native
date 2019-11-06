@@ -18,7 +18,7 @@ class LitterScreen extends React.Component {
                                                 mother nature and to keep our
                                                 neighbourhood beautiful and clean.
                 </Text>  
-                <Text style={styles.cardTitle}>Join the kindness train!</Text>   
+                <Text style={styles.cardTitle}>People who picked up litter</Text>   
                 <ScrollView style={styles.scroll}>
                     <FlatList 
                         style={styles.list}
