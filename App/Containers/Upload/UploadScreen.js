@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Text, TextInput, Button, View, TouchableHighlight, TouchableOpacity, Modal, ScrollView, Alert } from 'react-native'
 import CameraRoll from "@react-native-community/cameraroll";
-import styles from '../Shared/SkoshScreenStyle';
+import styles from './UploadScreenStyle';
 import SkoshActions from 'App/Stores/Skosh/Actions';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
@@ -44,15 +44,12 @@ class UploadScreen extends React.Component {
 
         return (
             <View>
-                <ScrollView>
+                <View>
                     <TouchableOpacity style={styles.cameraButton}
                         onPress={() => { this._loadCameraRoll(); }}
                     >
-                        <Image
-                            style={styles.skoshPhoto} 
-                            source={ this.props.userSkoshPhoto
-                                        ? { uri: this.props.userSkoshPhoto }
-                                        : Images.upload }   
+                        <Image style={styles.skoshPhoto} 
+                            source= { this.props.userSkoshPhoto ? { uri: this.props.userSkoshPhoto } : Images.upload } 
                         />
                     </TouchableOpacity> 
                     <TextInput
@@ -63,11 +60,10 @@ class UploadScreen extends React.Component {
                         autoCapitalize = 'none'
                         ref={(input) => this.captionInput = input}
                     />
-                    <Button
-                        title="Sumbit Skosh"
-                        onPress={ () => this._skoshSubmit()}>
-                    </Button>
-                </ScrollView>
+                </View>
+                    <TouchableOpacity onPress={() => this._skoshSubmit()}>
+                        <Text style={styles.submitButton}>Submit Skosh</Text> 
+                    </TouchableOpacity>
 
                 <Modal
                     animationType="slide"
@@ -78,14 +74,11 @@ class UploadScreen extends React.Component {
                     }}
                 >
                     <View style={{flex: 1, backgroundColor: 'white'}}>
+                        <TouchableHighlight style={styles.closeButton}
+                            onPress={() => { this._closeCameraRoll(); }}>
+                            <Text style={styles.closeButton}>Cancel</Text>
+                        </TouchableHighlight>
                         <ScrollView style={styles.cameraRollContainer}>
-                           <TouchableOpacity style={styles.socialBarButton}
-                                onPress={() => {
-                                    this._closeCameraRoll();
-                                }}
-                            >
-                                <Icon style={styles.closeIcon} name='times' size={30} color='#f77754' />
-                            </TouchableOpacity>
                             <View style={styles.imageGrid}>
                                 {this.state.photos.map((p, i) => {
                                     return (
