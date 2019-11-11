@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, View,} from 'react-native'
+import { Alert, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, View,} from 'react-native'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import RegisterActions from 'App/Stores/Register/Actions'
@@ -30,17 +30,17 @@ class RegisterScreen extends React.Component {
                     }}
                     >
                         <View style={{flex: 1, backgroundColor: 'white'}}>
-                            <TouchableHighlight style={styles.closeButton}
+                            <TouchableOpacity style={styles.closeButton}
                                 onPress={() => { this._closeCameraRoll(); }}>
                                 <Text style={styles.closeButton}>Cancel</Text>
-                            </TouchableHighlight>
+                            </TouchableOpacity>
                             <ScrollView style={styles.camerarollContainer}>
                                 <View style={styles.imageGrid}>
                                     {this.state.photos.map((p, i) => {
                                         return (
-                                            <TouchableHighlight onPress={() => { this._renderRegisterImage(p.node.image.uri); this._closeCameraRoll(); }}>
+                                            <TouchableOpacity key={i} onPress={() => { this._renderRegisterImage(p.node.image.uri); this._closeCameraRoll(); }}>
                                                 <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />      
-                                            </TouchableHighlight>
+                                            </TouchableOpacity>
                                         );
                                     })}
                                 </View>  

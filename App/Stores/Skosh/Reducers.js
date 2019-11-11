@@ -32,6 +32,7 @@ export const skoshFailure = (state, { errorMessage }) => ({
 
 export const viewSkoshSuccess = (state, { skoshAvatars }) => ({
   ...state,
+  skoshImage: null,
   skoshAvatars: skoshAvatars, 
 })
 

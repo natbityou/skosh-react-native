@@ -53,7 +53,7 @@ class LitterScreen extends React.Component {
                 <TouchableOpacity
                     onPress={ () => this.props.navigation.navigate('Upload')}>                        
                     <Icon style={styles.uploadicon} name="upload" size={30} color="black"/>
-                    <Text style={styles.uploadText}>Upload your deed</Text>
+                    <Text style={styles.uploadText}>Upload your Skosh</Text>
                 </TouchableOpacity>
            </View>
         );

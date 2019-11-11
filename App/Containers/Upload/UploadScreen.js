@@ -74,17 +74,17 @@ class UploadScreen extends React.Component {
                     }}
                 >
                     <View style={{flex: 1, backgroundColor: 'white'}}>
-                        <TouchableHighlight style={styles.closeButton}
+                        <TouchableOpacity style={styles.closeButton}
                             onPress={() => { this._closeCameraRoll(); }}>
                             <Text style={styles.closeButton}>Cancel</Text>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                         <ScrollView style={styles.cameraRollContainer}>
                             <View style={styles.imageGrid}>
                                 {this.state.photos.map((p, i) => {
                                     return (
-                                        <TouchableHighlight onPress={() => {this._renderSkoshImage(p.node.image.uri); this._closeCameraRoll();}}>
+                                        <TouchableOpacity key={i} onPress={() => {this._renderSkoshImage(p.node.image.uri); this._closeCameraRoll();}}>
                                             <Image style={styles.picture} key={i} source={{ uri: p.node.image.uri }} />      
-                                        </TouchableHighlight>
+                                        </TouchableOpacity>
                                     );
                                 })}
                             </View>
@@ -111,7 +111,7 @@ UploadScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
     uploadSkoshType: state.skosh.uploadType,
-    userSkoshPhoto : state.skosh.skoshPhoto,
+    userSkoshPhoto : state.skosh.skoshImage,
 })
 
 const mapDispatchToProps = (dispatch) => ({

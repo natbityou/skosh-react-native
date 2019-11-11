@@ -35,7 +35,7 @@ class HomeScreen extends React.Component {
           },
           {
             id: 3,
-            title: "Donate your unused items",
+            title: "Donate your unwanted items",
             image: "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80", 
             description: "Your items aren’t paying rent, so what are you keeping them?"
           }, 

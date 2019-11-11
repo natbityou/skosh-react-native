@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '11.1'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 target 'skosh' do
   # Pods for skosh
@@ -32,11 +32,4 @@ target 'skosh' do
     # Pods for testing
   end
   use_native_modules!
-end
-target 'skosh-tvOS' do
-  # Pods for skosh-tvOS
-  target 'skosh-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 end

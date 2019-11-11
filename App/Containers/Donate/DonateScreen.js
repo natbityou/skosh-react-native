@@ -11,7 +11,7 @@ class DonateScreen extends React.Component {
      render() {
         return (
             <View>
-                <Text style={styles.title}>Donate your unused items</Text>
+                <Text style={styles.title}>Donate your unwanted items</Text>
                 <Text style={styles. description}>Your items aren’t paying rent, so what are you keeping them? 
                     There are many families in need of usable items. 
                     There are disaster victims, underprivileged people, 
